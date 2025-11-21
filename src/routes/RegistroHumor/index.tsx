@@ -437,3 +437,143 @@ export default function RegistroHumor() {
                 <p className="text-red-500 text-sm mt-1 text-center">{errors.nivel_estresse.message}</p>
               )}
             </div>
+
+            {/* Observações */}
+            <div className={`rounded-lg p-4 border ${
+              isDark ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
+            }`}>
+              <div className="flex justify-between items-center mb-2">
+                <label className={`text-sm font-medium flex items-center ${
+                  isDark ? 'text-gray-200' : 'text-gray-700'
+                }`}>
+                  <FiFileText className="mr-1" />
+                  Observações *
+                </label>
+                <span className={`text-sm font-medium ${getObservacaoCountColor(observacao.length)}`}>
+                  {observacao.length}/1000 caracteres
+                </span>
+              </div>
+              <textarea
+                rows={4}
+                {...register('observacao', { 
+                  required: 'Observações são obrigatórias',
+                  minLength: {
+                    value: 10,
+                    message: 'As observações devem ter pelo menos 10 caracteres'
+                  },
+                  maxLength: {
+                    value: 1000,
+                    message: 'As observações não podem exceder 1000 caracteres'
+                  }
+                })}
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 resize-none ${
+                  isDark 
+                    ? 'bg-gray-600 border-gray-500 text-white' 
+                    : 'border-gray-300'
+                }`}
+                placeholder="Descreva como está se sentindo, o que está acontecendo no seu dia, fatores que estão influenciando seu humor, etc..."
+              />
+              {errors.observacao && (
+                <p className="text-red-500 text-sm mt-1">{errors.observacao.message}</p>
+              )}
+              <div className={`mt-1 text-xs flex items-center ${
+                isDark ? 'text-gray-400' : 'text-gray-500'
+              }`}>
+                <FiAlertTriangle className="mr-1" />
+                Mínimo 10 caracteres - Compartilhe detalhes sobre seu estado emocional
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading || empregados.length === 0}
+              className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition duration-300 flex items-center justify-center ${
+                loading || empregados.length === 0
+                  ? 'bg-gray-500 cursor-not-allowed'
+                  : isDark
+                    ? 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105'
+                    : 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105'
+              }`}
+            >
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                  Salvando...
+                </div>
+              ) : (
+                <>
+                  <FiSave className="mr-2" />
+                  Salvar Registro de Humor
+                </>
+              )}
+            </button>
+          </form>
+        </div>
+
+        {/* Informações */}
+        <div className={`mt-8 rounded-xl p-6 border ${
+          isDark ? 'bg-blue-900 border-blue-700' : 'bg-blue-50 border-blue-200'
+        }`}>
+          <h3 className={`text-lg font-semibold mb-3 flex items-center ${
+            isDark ? 'text-blue-100' : 'text-blue-900'
+          }`}>
+            <FiInfo className="mr-2" />
+            Por que registrar seu humor?
+          </h3>
+          <ul className={`space-y-2 ${
+            isDark ? 'text-blue-200' : 'text-blue-800'
+          }`}>
+            <li className="flex items-start">
+              <FiHeart className={`mr-2 mt-1 ${
+                isDark ? 'text-blue-400' : 'text-blue-600'
+              }`} />
+              Ajuda no monitoramento da saúde mental da equipe
+            </li>
+            <li className="flex items-start">
+              <FiTrendingUp className={`mr-2 mt-1 ${
+                isDark ? 'text-blue-400' : 'text-blue-600'
+              }`} />
+              Identifica padrões e tendências emocionais
+            </li>
+            <li className="flex items-start">
+              <FiEye className={`mr-2 mt-1 ${
+                isDark ? 'text-blue-400' : 'text-blue-600'
+              }`} />
+              Permite intervenções proativas quando necessário
+            </li>
+            <li className="flex items-start">
+              <FiUsers className={`mr-2 mt-1 ${
+                isDark ? 'text-blue-400' : 'text-blue-600'
+              }`} />
+              Contribui para um ambiente de trabalho mais saudável
+            </li>
+            <li className="flex items-start">
+              <FiFileText className={`mr-2 mt-1 ${
+                isDark ? 'text-blue-400' : 'text-blue-600'
+              }`} />
+              As observações detalhadas ajudam a entender o contexto
+            </li>
+          </ul>
+        </div>
+
+        {/* Botão de recarregar colaboradores */}
+        {error && (
+          <div className="mt-6 text-center">
+            <button
+              onClick={handleRetry}
+              className={`px-6 py-2 rounded-lg transition duration-300 flex items-center mx-auto ${
+                isDark
+                  ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              <FiRefreshCw className="mr-2" />
+              Recarregar Colaboradores
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
