@@ -770,5 +770,133 @@ export default function GerenciarHumor() {
                     <p className="text-red-500 text-sm mt-1 text-center">{errors.nivel_estresse.message}</p>
                   )}
                 </div>
-              </form>
+              
+              {/* Observações */}
+                <div className={`rounded-lg p-4 border ${
+                  isDark ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
+                }`}>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className={`text-sm font-medium flex items-center ${
+                      isDark ? 'text-gray-200' : 'text-gray-700'
+                    }`}>
+                      <FiFileText className="mr-1" />
+                      Observações *
+                    </label>
+                    <span className={`text-sm font-medium ${getObservacaoCountColor(observacao.length)}`}>
+                      {observacao.length}/1000 caracteres
+                    </span>
+                  </div>
+                  <textarea
+                    rows={4}
+                    {...register('observacao', { 
+                      required: 'Observações são obrigatórias',
+                      minLength: {
+                        value: 10,
+                        message: 'As observações devem ter pelo menos 10 caracteres'
+                      },
+                      maxLength: {
+                        value: 1000,
+                        message: 'As observações não podem exceder 1000 caracteres'
+                      }
+                    })}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 resize-none ${
+                      isDark 
+                        ? 'bg-gray-600 border-gray-500 text-white' 
+                        : 'border-gray-300'
+                    }`}
+                    placeholder="Descreva como está se sentindo, o que está acontecendo no seu dia, fatores que estão influenciando seu humor, etc..."
+                  />
+                  {errors.observacao && (
+                    <p className="text-red-500 text-sm mt-1">{errors.observacao.message}</p>
+                  )}
+                  <div className={`mt-1 text-xs flex items-center ${
+                    isDark ? 'text-gray-400' : 'text-gray-500'
+                  }`}>
+                    <FiAlertTriangle className="mr-1" />
+                    Mínimo 10 caracteres - Compartilhe detalhes sobre seu estado emocional
+                  </div>
+                </div>
 
+                {/* Botões de Ação */}
+                <div className="flex space-x-3">
+                  <button
+                    type="submit"
+                    disabled={loadingAction}
+                    className={`flex-1 py-3 px-6 rounded-lg font-semibold text-white transition duration-300 flex items-center justify-center ${
+                      loadingAction
+                        ? 'bg-gray-500 cursor-not-allowed'
+                        : isDark
+                          ? 'bg-blue-600 hover:bg-blue-700'
+                          : 'bg-blue-600 hover:bg-blue-700'
+                    }`}
+                  >
+                    {loadingAction ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        {editingId ? 'Atualizando...' : 'Criando...'}
+                      </div>
+                    ) : editingId ? (
+                      <>
+                        <FiSave className="mr-2" />
+                        Atualizar Registro
+                      </>
+                    ) : (
+                      <>
+                        <FiPlus className="mr-2" />
+                        Criar Registro
+                      </>
+                    )}
+                  </button>
+                  
+                  {editingId && (
+                    <button
+                      type="button"
+                      onClick={resetForm}
+                      className={`py-3 px-6 rounded-lg font-semibold transition duration-300 disabled:opacity-50 flex items-center ${
+                        isDark
+                          ? 'bg-gray-600 text-white hover:bg-gray-500'
+                          : 'bg-gray-500 text-white hover:bg-gray-600'
+                      }`}
+                      disabled={loadingAction}
+                    >
+                      <FiX className="mr-2" />
+                      Cancelar
+                    </button>
+                  )}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {/* Botão de recarregar */}
+        <div className="mt-8 text-center">
+          <button
+            onClick={loadData}
+            disabled={loading}
+            className={`px-6 py-2 rounded-lg transition duration-300 flex items-center mx-auto disabled:opacity-50 ${
+              isDark
+                ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            <FiRefreshCw className={`mr-2 ${loading ? 'animate-spin' : ''}`} />
+            {loading ? 'Atualizando...' : 'Atualizar Dados'}
+          </button>
+        </div>
+
+        {/* Botão para voltar ao topo */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className={`fixed bottom-6 right-6 p-3 rounded-full shadow-lg transition duration-300 ${
+            isDark
+              ? 'bg-blue-600 text-white hover:bg-blue-700'
+              : 'bg-blue-600 text-white hover:bg-blue-700'
+          }`}
+        >
+          <FiArrowUp size={20} />
+        </button>
+      </div>
+    </div>
+  );
+}
