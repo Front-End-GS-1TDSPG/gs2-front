@@ -259,3 +259,50 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Additional Info Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+            <FiThumbsUp className={`inline mr-3 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
+            Benefícios Comprovados
+          </h2>
+          <p className={`text-xl max-w-3xl mx-auto ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          }`}>
+            Empresas que investem em bem-estar mental observam resultados significativos
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { icon: <IoStatsChart size={32} />, title: 'Métricas Precisas', desc: 'Dados em tempo real' },
+            { icon: <FiUsers size={32} />, title: 'Equipe Engajada', desc: 'Maior participação' },
+            { icon: <FiTrendingUp size={32} />, title: 'Crescimento Sustentável', desc: 'Resultados duradouros' },
+            { icon: <FiAward size={32} />, title: 'Reconhecimento', desc: 'Melhores práticas' }
+          ].map((item, index) => (
+            <div key={index} className={`p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition duration-300 ${
+              isDark ? 'benefit-card-dark' : 'benefit-card-light'
+            }`}>
+              <div className={`mb-4 flex justify-center ${
+                isDark ? 'text-blue-400' : 'text-blue-600'
+              }`}>
+                {item.icon}
+              </div>
+              <h3 className={`text-lg font-bold mb-2 ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                {item.title}
+              </h3>
+              <p className={isDark ? 'text-gray-300 text-sm' : 'text-gray-600 text-sm'}>
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
