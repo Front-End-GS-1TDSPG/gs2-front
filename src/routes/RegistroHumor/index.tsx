@@ -309,3 +309,131 @@ export default function RegistroHumor() {
                 </p>
               )}
             </div>
+
+            {/* Data */}
+            <div>
+              <label className={`text-sm font-medium mb-2 flex items-center ${
+                isDark ? 'text-gray-200' : 'text-gray-700'
+              }`}>
+                <FiCalendar className="mr-1" />
+                Data do Registro *
+              </label>
+              <input
+                type="date"
+                {...register('data_registro', { required: 'Data é obrigatória' })}
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                  isDark 
+                    ? 'bg-gray-700 border-gray-600 text-white' 
+                    : 'border-gray-300'
+                }`}
+              />
+              {errors.data_registro && (
+                <p className="text-red-500 text-sm mt-1">{errors.data_registro.message}</p>
+              )}
+            </div>
+
+            {/* Nível de Humor */}
+            <div className={`rounded-lg p-4 border ${
+              isDark ? 'bg-blue-900 border-blue-700' : 'bg-blue-50 border-blue-200'
+            }`}>
+              <label className={`text-sm font-medium mb-4 flex items-center justify-between ${
+                isDark ? 'text-gray-200' : 'text-gray-700'
+              }`}>
+                <span className="flex items-center">
+                  <FiSmile className="mr-1" />
+                  Nível de Humor:
+                </span>
+                <span className="text-2xl">{getHumorIcon(nivelHumor)}</span>
+              </label>
+              <div className="flex items-center space-x-4 mb-3">
+                <span className={`text-sm whitespace-nowrap flex items-center ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  <MdSentimentVeryDissatisfied className="mr-1" />
+                  Muito Triste
+                </span>
+                <input
+                  type="range"
+                  min="1"
+                  max="5"
+                  {...register('nivel_humor', { 
+                    required: 'Nível de humor é obrigatório',
+                    valueAsNumber: true 
+                  })}
+                  className={`flex-1 h-2 rounded-lg appearance-none cursor-pointer ${
+                    isDark ? 'bg-blue-700' : 'bg-blue-200'
+                  }`}
+                />
+                <span className={`text-sm whitespace-nowrap flex items-center ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  <MdSentimentVerySatisfied className="mr-1" />
+                  Muito Feliz
+                </span>
+              </div>
+              <div className="text-center">
+                <span className={`text-lg font-semibold px-3 py-1 rounded-full border ${
+                  isDark 
+                    ? 'text-blue-400 bg-gray-800 border-blue-600' 
+                    : 'text-blue-600 bg-white border-blue-200'
+                }`}>
+                  {nivelHumor}/5
+                </span>
+              </div>
+              {errors.nivel_humor && (
+                <p className="text-red-500 text-sm mt-1 text-center">{errors.nivel_humor.message}</p>
+              )}
+            </div>
+
+            {/* Nível de Estresse */}
+            <div className={`rounded-lg p-4 border ${
+              isDark ? 'bg-orange-900 border-orange-700' : 'bg-orange-50 border-orange-200'
+            }`}>
+              <label className={`text-sm font-medium mb-4 flex items-center justify-between ${
+                isDark ? 'text-gray-200' : 'text-gray-700'
+              }`}>
+                <span className="flex items-center">
+                  <FiFrown className="mr-1" />
+                  Nível de Estresse:
+                </span>
+                <span className="text-2xl">{getEstresseIcon(nivelEstresse)}</span>
+              </label>
+              <div className="flex items-center space-x-4 mb-3">
+                <span className={`text-sm whitespace-nowrap flex items-center ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  <IoHappy className="mr-1" />
+                  Muito Calmo
+                </span>
+                <input
+                  type="range"
+                  min="1"
+                  max="5"
+                  {...register('nivel_estresse', { 
+                    required: 'Nível de estresse é obrigatório',
+                    valueAsNumber: true 
+                  })}
+                  className={`flex-1 h-2 rounded-lg appearance-none cursor-pointer ${
+                    isDark ? 'bg-orange-700' : 'bg-orange-200'
+                  }`}
+                />
+                <span className={`text-sm whitespace-nowrap flex items-center ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  <MdSick className="mr-1" />
+                  Muito Estressado
+                </span>
+              </div>
+              <div className="text-center">
+                <span className={`text-lg font-semibold px-3 py-1 rounded-full border ${
+                  isDark 
+                    ? 'text-orange-400 bg-gray-800 border-orange-600' 
+                    : 'text-orange-600 bg-white border-orange-200'
+                }`}>
+                  {nivelEstresse}/5
+                </span>
+              </div>
+              {errors.nivel_estresse && (
+                <p className="text-red-500 text-sm mt-1 text-center">{errors.nivel_estresse.message}</p>
+              )}
+            </div>
