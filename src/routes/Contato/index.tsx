@@ -137,3 +137,117 @@ export default function Contato() {
         return null;
     }
   };
+
+  // Simula carregamento de métodos de contato
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setContactMethods(prev => [...prev]);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Atualiza contador de caracteres
+  useEffect(() => {
+    setCharCount(formData.mensagem.length);
+  }, [formData.mensagem]);
+
+  const handleInputChange = (field: keyof FormData, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+
+    // Limpa erro do campo quando usuário começa a digitar
+    if (errors[field]) {
+      setErrors(prev => ({
+        ...prev,
+        [field]: undefined
+      }));
+    }
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.nome.trim()) {
+      newErrors.nome = 'Nome é obrigatório';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email é obrigatório';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email inválido';
+    }
+
+    if (formData.telefone && !/^\(\d{2}\) \d{4,5}-\d{4}$/.test(formData.telefone)) {
+      newErrors.telefone = 'Telefone inválido';
+    }
+
+    if (!formData.assunto) {
+      newErrors.assunto = 'Assunto é obrigatório';
+    }
+
+    if (!formData.mensagem.trim()) {
+      newErrors.mensagem = 'Mensagem é obrigatória';
+    } else if (formData.mensagem.length < 10) {
+      newErrors.mensagem = 'Mensagem deve ter pelo menos 10 caracteres';
+    } else if (formData.mensagem.length > 1000) {
+      newErrors.mensagem = 'Mensagem deve ter no máximo 1000 caracteres';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Simula envio para API
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Simula sucesso/erro aleatório para demonstração
+      const isSuccess = Math.random() > 0.3;
+      
+      if (isSuccess) {
+        setSubmitStatus('success');
+        setFormData({
+          nome: '',
+          email: '',
+          telefone: '',
+          empresa: '',
+          assunto: '',
+          mensagem: ''
+        });
+        setCharCount(0);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const formatPhone = (value: string) => {
+    const numbers = value.replace(/\D/g, '');
+    if (numbers.length <= 10) {
+      return numbers.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+    } else {
+      return numbers.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+    }
+  };
+
+  const handlePhoneChange = (value: string) => {
+    const formatted = formatPhone(value);
+    handleInputChange('telefone', formatted);
+  };
