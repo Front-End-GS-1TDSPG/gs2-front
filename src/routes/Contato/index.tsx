@@ -350,3 +350,141 @@ export default function Contato() {
               </div>
             </div>
           </div>
+
+          {/* Formulário de Contato */}
+          <div className="lg:col-span-2">
+            <div className={`rounded-xl shadow-lg p-6 ${isDark ? 'contact-form-dark' : 'contact-form-light'}`}>
+              <h2 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Envie sua Mensagem
+              </h2>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Nome e Email */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                      Nome Completo *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.nome}
+                      onChange={(e) => handleInputChange('nome', e.target.value)}
+                      className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                        errors.nome 
+                          ? 'border-red-500' 
+                          : isDark 
+                            ? 'border-gray-600 bg-gray-700 text-white' 
+                            : 'border-gray-300'
+                      }`}
+                      placeholder="Seu nome completo"
+                    />
+                    {errors.nome && (
+                      <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                        <FaTimes className="text-xs" />
+                        {errors.nome}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                        errors.email 
+                          ? 'border-red-500' 
+                          : isDark 
+                            ? 'border-gray-600 bg-gray-700 text-white' 
+                            : 'border-gray-300'
+                      }`}
+                      placeholder="seu@email.com"
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                        <FaTimes className="text-xs" />
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Telefone e Empresa */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                      Telefone
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.telefone}
+                      onChange={(e) => handlePhoneChange(e.target.value)}
+                      className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                        errors.telefone 
+                          ? 'border-red-500' 
+                          : isDark 
+                            ? 'border-gray-600 bg-gray-700 text-white' 
+                            : 'border-gray-300'
+                      }`}
+                      placeholder="(11) 99999-9999"
+                      maxLength={15}
+                    />
+                    {errors.telefone && (
+                      <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                        <FaTimes className="text-xs" />
+                        {errors.telefone}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                      Empresa
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.empresa}
+                      onChange={(e) => handleInputChange('empresa', e.target.value)}
+                      className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                        isDark 
+                          ? 'border-gray-600 bg-gray-700 text-white' 
+                          : 'border-gray-300'
+                      }`}
+                      placeholder="Sua empresa (opcional)"
+                    />
+                  </div>
+                </div>
+
+                {/* Assunto */}
+                <div>
+                  <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                    Assunto *
+                  </label>
+                  <select
+                    value={formData.assunto}
+                    onChange={(e) => handleInputChange('assunto', e.target.value)}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                      errors.assunto 
+                        ? 'border-red-500' 
+                        : isDark 
+                          ? 'border-gray-600 bg-gray-700 text-white' 
+                          : 'border-gray-300'
+                    }`}
+                  >
+                    <option value="">Selecione um assunto</option>
+                    {assuntos.map((assunto, index) => (
+                      <option key={index} value={assunto}>
+                        {assunto}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.assunto && (
+                    <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                      <FaTimes className="text-xs" />
+                      {errors.assunto}
+                    </p>
+                  )}
+                </div>
