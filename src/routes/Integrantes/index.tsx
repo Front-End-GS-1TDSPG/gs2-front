@@ -141,3 +141,41 @@ export default function Integrantes() {
             </div>
           </>
         )}
+
+        {/* Team Description */}
+        <div className={`rounded-xl shadow-lg p-8 max-w-4xl mx-auto ${
+          isDark ? 'team-description-dark' : 'team-description-light'
+        }`}>
+          <h2 className={`text-2xl font-bold mb-4 text-center ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+            Sobre o Grupo AGJ
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <FaBullseye className={isDark ? 'text-green-400 text-lg' : 'text-green-600 text-lg'} />
+                <h3 className={`font-semibold text-lg ${
+                  isDark ? 'text-white' : 'text-gray-900'
+                }`}>Nossa Missão</h3>
+              </div>
+              <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
+                Desenvolver soluções inovadoras que impactem positivamente a sociedade, 
+                combinando tecnologia de ponta com boas práticas de desenvolvimento.
+              </p>
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <FaRocket className={isDark ? 'text-purple-400 text-lg' : 'text-purple-600 text-lg'} />
+                <h3 className={`font-semibold text-lg ${
+                  isDark ? 'text-white' : 'text-gray-900'
+                }`}>Tecnologias</h3>
+              </div>
+              <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
+                Especializados em React, TypeScript, Java, Quarkus e outras tecnologias 
+                modernas para criar aplicações robustas e escaláveis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
