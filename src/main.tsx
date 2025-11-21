@@ -12,6 +12,7 @@ import Contato from './routes/Contato/index.tsx'
 import Login from './routes/Login/index.tsx'
 import Cadastro from './routes/Cadastro/index.tsx'
 import Dashboard from './routes/Dashboard/index.tsx'
+import RegistroHumor from './routes/RegistroHumor/index.tsx'
 
 const router = createBrowserRouter([
   {path: "/", element: <App/>, errorElement: <Error/>, children:[
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
   {path:"/contato", element:<Contato/>},
   {path:"/login", element:<Login/>},
   {path:"/cadastro", element:<Cadastro/>},
+  {path:"/registro-humor", element:<RegistroHumor/>},
   {path:"/dashboard", element:<Dashboard/>},
   ]}
 ])
