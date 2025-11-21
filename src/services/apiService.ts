@@ -1,6 +1,6 @@
 import type { AlertaBemEstar, Departamento, Empregado, RegistroHumor, RegistroHumorForm } from "../types/tipoApi";
 
-const API_BASE_URL = 'https://gs2-grupoagj-java.onrender.com';
+const API_BASE_URL = import.meta.env.VITE_API_URL as string;;
 const TIMEOUT = 10000; // 10 segundos
 
 // Interface para o cache
