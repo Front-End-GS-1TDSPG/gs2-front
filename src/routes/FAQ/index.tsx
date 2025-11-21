@@ -217,3 +217,61 @@ export default function FAQ() {
     };
     return categoryMap[category] || category;
   };
+
+    return (
+    <div className={`min-h-screen py-8 ${isDark ? 'faq-dark' : 'faq-light'}`}>
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Perguntas Frequentes
+          </h1>
+          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+            Encontre respostas para as dúvidas mais comuns sobre a MentalTech
+          </p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className={`rounded-xl shadow-lg p-6 ${isDark ? 'search-filters-dark' : 'search-filters-light'}`}>
+            {/* Search Bar */}
+            <div className="relative mb-6">
+              <input
+                type="text"
+                placeholder="Buscar por perguntas ou respostas..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={`w-full px-4 py-3 pl-12 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                  isDark 
+                    ? 'border-gray-600 bg-gray-700 text-white placeholder-gray-400' 
+                    : 'border-gray-300 placeholder-gray-500'
+                }`}
+              />
+              <div className={`absolute left-4 top-1/2 transform -translate-y-1/2 ${
+                isDark ? 'text-gray-400' : 'text-gray-400'
+              }`}>
+                {renderIcon('FaSearch')}
+              </div>
+            </div>
+
+            {/* Category Filters */}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {categories.map(category => (
+                <button
+                  key={category.name}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition duration-300 ${
+                    selectedCategory === category.name
+                      ? 'bg-blue-600 text-white'
+                      : isDark
+                        ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  {renderIcon(category.icon)}
+                  <span>{getCategoryName(category.name)}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
