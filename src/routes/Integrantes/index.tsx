@@ -179,3 +179,91 @@ export default function Integrantes() {
           </div>
         </div>
       </div>
+
+      {/* Modal de Detalhes do Integrante - Igual ao Sobre */}
+      {selectedIntegrante && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className={`rounded-xl max-w-md w-full p-6 transform scale-95 animate-scaleIn ${
+            isDark ? 'modal-dark' : 'modal-light'
+          }`}>
+            <div className="flex justify-between items-start mb-4">
+              <h3 className={`text-2xl font-bold ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>Detalhes do Integrante</h3>
+              <button
+                onClick={closeModal}
+                className={isDark ? 'text-gray-400 hover:text-white text-2xl' : 'text-gray-500 hover:text-gray-700 text-2xl'}
+              >
+                <FaTimes />
+              </button>
+            </div>
+
+            <div className="text-center">
+              <div className={`w-24 h-24 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4 overflow-hidden ${
+                isDark ? 'bg-blue-700' : 'bg-blue-600'
+              }`}>
+                {selectedIntegrante.photo ? (
+                  <img
+                    src={selectedIntegrante.photo}
+                    alt={selectedIntegrante.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <FaUser className="text-2xl" />
+                )}
+              </div>
+              
+              <h4 className={`text-xl font-bold mb-2 ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                {selectedIntegrante.name}
+              </h4>
+              
+              <div className={`space-y-2 text-left mb-6 ${
+                isDark ? 'text-gray-300' : 'text-gray-600'
+              }`}>
+                <div className="flex items-center gap-2">
+                  <FaIdCard className={isDark ? 'text-blue-400' : 'text-blue-600'} />
+                  <p><strong>RM:</strong> {selectedIntegrante.rm}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FaGraduationCap className={isDark ? 'text-blue-400' : 'text-blue-600'} />
+                  <p><strong>Turma:</strong> {selectedIntegrante.turma}</p>
+                </div>
+              </div>
+              
+              <div className="flex justify-center space-x-4">
+                <a
+                  href={selectedIntegrante.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`px-4 py-2 rounded-lg transition duration-300 flex items-center space-x-2 ${
+                    isDark
+                      ? 'bg-gray-700 text-white hover:bg-gray-600'
+                      : 'bg-gray-800 text-white hover:bg-gray-900'
+                  }`}
+                >
+                  <FaGithub />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href={selectedIntegrante.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`px-4 py-2 rounded-lg transition duration-300 flex items-center space-x-2 ${
+                    isDark
+                      ? 'bg-blue-700 text-white hover:bg-blue-600'
+                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                  }`}
+                >
+                  <FaLinkedin />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
