@@ -68,3 +68,51 @@ export default function Home() {
           value: targetStats[index]
         }))
       );
+
+      // Atualiza features
+      setFeatures([
+        {
+          icon: <MdOutlineMonitorHeart size={24} />,
+          title: 'Monitoramento de Humor',
+          description: 'Acompanhe diariamente o humor e níveis de estresse dos colaboradores para identificar padrões e necessidades de intervenção proativa.',
+          color: 'green'
+        },
+        {
+          icon: <MdOutlinePsychology size={24} />,
+          title: 'Alertas Inteligentes',
+          description: 'Sistema de alertas proativos baseado em machine learning para situações que requerem atenção especial da equipe de RH.',
+          color: 'yellow'
+        },
+        {
+          icon: <MdAnalytics size={24} />,
+          title: 'Analytics em Tempo Real',
+          description: 'Dashboard completo com métricas avançadas e insights preditivos sobre o bem-estar organizacional.',
+          color: 'blue'
+        }
+      ]);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const [activeFeature, setActiveFeature] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveFeature(prev => (prev + 1) % features.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [features.length]);
+
+  const handleComecarAgora = () => {
+    navigate('/gerenciar-humor');
+  };
+
+  const handleSaibaMais = () => {
+    navigate('/sobre');
+  };
+
+  const handleSolicitarDemonstracao = () => {
+    navigate('/dashboard');
+  };
