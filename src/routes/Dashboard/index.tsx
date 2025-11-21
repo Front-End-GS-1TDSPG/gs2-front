@@ -246,3 +246,117 @@ export default function Dashboard() {
       </div>
     );
   }
+
+  return (
+    <div className={`min-h-screen py-8 ${isDark ? 'dashboard-dark' : 'dashboard-light'}`}>
+      <div className="container mx-auto px-4">
+        {/* Header com indicador de carregamento */}
+        <div className="text-center mb-8">
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 flex items-center justify-center ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+            <MdOutlineDashboard className={`mr-3 ${
+              isDark ? 'text-blue-400' : 'text-blue-600'
+            }`} />
+            Dashboard de Bem-Estar
+            {error && retryCount < 3 && (
+              <span className={`ml-2 text-sm px-2 py-1 rounded flex items-center ${
+                isDark ? 'text-orange-400 bg-orange-900' : 'text-orange-600 bg-orange-100'
+              }`}>
+                <FiRefreshCw className="mr-1 animate-spin" />
+                Tentando reconectar... ({retryCount + 1}/3)
+              </span>
+            )}
+          </h1>
+          <p className={`text-xl max-w-2xl mx-auto ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          }`}>
+            Monitoramento em tempo real do clima organizacional
+          </p>
+        </div>
+
+        {/* Estatísticas */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {estatisticas.map((stat, index) => (
+            <div key={index} className={`rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition duration-300 ${
+              isDark ? 'stat-card-dark' : 'stat-card-light'
+            }`}>
+              <div className="flex justify-center mb-3">
+                {stat.icon}
+              </div>
+              <div className={`text-3xl font-bold mb-2 ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                {stat.valor}
+              </div>
+              <div className={`font-medium ${
+                isDark ? 'text-gray-300' : 'text-gray-600'
+              }`}>
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Últimos Registros de Humor */}
+          <div className={`rounded-xl shadow-lg p-6 ${
+            isDark ? 'section-dark' : 'section-light'
+          }`}>
+            <h2 className={`text-2xl font-bold mb-6 flex items-center ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}>
+              <FiHeart className={`mr-2 ${
+                isDark ? 'text-red-400' : 'text-red-500'
+              }`} />
+              Últimos Registros de Humor
+            </h2>
+            <div className="space-y-4">
+              {registrosHumor.slice(0, 5).map(registro => (
+                <div key={registro.id_registro} className={`flex items-center justify-between p-4 border rounded-lg transition duration-200 ${
+                  isDark
+                    ? 'border-gray-700 hover:bg-gray-800'
+                    : 'border-gray-200 hover:bg-gray-50'
+                }`}>
+                  <div className="flex items-center">
+                    <FiUser className={`mr-3 ${
+                      isDark ? 'text-gray-500' : 'text-gray-400'
+                    }`} />
+                    <div>
+                      <div className={`font-semibold ${
+                        isDark ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        {empregados.find(e => e.id_empregado === registro.empregado_id_empregado)?.nome || 'Colaborador'}
+                      </div>
+                      <div className={`text-sm flex items-center ${
+                        isDark ? 'text-gray-400' : 'text-gray-600'
+                      }`}>
+                        <FiCalendar className="mr-1" />
+                        {new Date(registro.data_registro).toLocaleDateString('pt-BR')}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className={`font-bold flex items-center justify-end ${getHumorColor(registro.nivel_humor)}`}>
+                      {getHumorIcon(registro.nivel_humor)}
+                      <span className="ml-1">Humor: {registro.nivel_humor}/5</span>
+                    </div>
+                    <div className={`text-sm flex items-center justify-end ${getEstresseColor(registro.nivel_estresse)}`}>
+                      <FiActivity className="mr-1" />
+                      Estresse: {registro.nivel_estresse}/5
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {registrosHumor.length === 0 && (
+                <div className={`text-center py-8 flex flex-col items-center ${
+                  isDark ? 'text-gray-400' : 'text-gray-500'
+                }`}>
+                  <FiMeh className={`text-4xl mb-2 ${
+                    isDark ? 'text-gray-500' : 'text-gray-400'
+                  }`} />
+                  Nenhum registro de humor encontrado
+                </div>
+              )}
+            </div>
+          </div>
