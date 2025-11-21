@@ -142,3 +142,107 @@ export default function Dashboard() {
     if (nivel >= 3) return <FiMeh className={isDark ? 'text-yellow-400' : 'text-yellow-600'} />;
     return <IoSad className={isDark ? 'text-red-400' : 'text-red-600'} />;
   };
+
+  // Skeleton Loading
+  if (loading) {
+    return (
+      <div className={`min-h-screen py-8 ${isDark ? 'dashboard-dark' : 'dashboard-light'}`}>
+        <div className="container mx-auto px-4">
+          {/* Header Skeleton */}
+          <div className="text-center mb-8">
+            <div className={`h-12 rounded-lg w-64 mx-auto mb-4 animate-pulse ${
+              isDark ? 'bg-gray-700' : 'bg-gray-300'
+            }`}></div>
+            <div className={`h-6 rounded w-96 mx-auto animate-pulse ${
+              isDark ? 'bg-gray-700' : 'bg-gray-300'
+            }`}></div>
+          </div>
+
+          {/* Estatísticas Skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className={`rounded-xl shadow-lg p-6 ${
+                isDark ? 'bg-gray-800' : 'bg-white'
+              }`}>
+                <div className={`h-8 rounded w-16 mx-auto mb-2 animate-pulse ${
+                  isDark ? 'bg-gray-700' : 'bg-gray-300'
+                }`}></div>
+                <div className={`h-4 rounded w-24 mx-auto animate-pulse ${
+                  isDark ? 'bg-gray-700' : 'bg-gray-300'
+                }`}></div>
+              </div>
+            ))}
+          </div>
+
+          {/* Conteúdo Skeleton */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className={`rounded-xl shadow-lg p-6 ${
+                isDark ? 'bg-gray-800' : 'bg-white'
+              }`}>
+                <div className={`h-8 rounded w-48 mb-6 animate-pulse ${
+                  isDark ? 'bg-gray-700' : 'bg-gray-300'
+                }`}></div>
+                {[...Array(3)].map((_, j) => (
+                  <div key={j} className={`flex items-center justify-between p-4 border rounded-lg mb-4 ${
+                    isDark ? 'border-gray-700' : 'border-gray-200'
+                  }`}>
+                    <div>
+                      <div className={`h-5 rounded w-32 mb-2 animate-pulse ${
+                        isDark ? 'bg-gray-700' : 'bg-gray-300'
+                      }`}></div>
+                      <div className={`h-4 rounded w-24 animate-pulse ${
+                        isDark ? 'bg-gray-700' : 'bg-gray-300'
+                      }`}></div>
+                    </div>
+                    <div className={`h-6 rounded w-20 animate-pulse ${
+                      isDark ? 'bg-gray-700' : 'bg-gray-300'
+                    }`}></div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error && retryCount >= 3) {
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${
+        isDark ? 'dashboard-dark' : 'dashboard-light'
+      }`}>
+        <div className="text-center max-w-md">
+          <MdOutlinePsychology className={`text-6xl mx-auto mb-4 ${
+            isDark ? 'text-red-400' : 'text-red-600'
+          }`} />
+          <h2 className={`text-2xl font-bold mb-2 ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>Erro ao carregar dashboard</h2>
+          <p className={`mb-4 ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          }`}>{error}</p>
+          <p className={`text-sm mb-4 ${
+            isDark ? 'text-gray-400' : 'text-gray-500'
+          }`}>
+            A API está respondendo lentamente. Tente novamente em alguns instantes.
+          </p>
+          <button
+            onClick={() => {
+              setRetryCount(0);
+              setError('');
+            }}
+            className={`px-6 py-2 rounded-lg transition duration-300 flex items-center mx-auto ${
+              isDark
+                ? 'bg-blue-600 text-white hover:bg-blue-700'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+          >
+            <IoReload className="mr-2" />
+            Tentar Novamente
+          </button>
+        </div>
+      </div>
+    );
+  }
