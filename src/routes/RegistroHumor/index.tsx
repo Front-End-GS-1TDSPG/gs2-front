@@ -188,3 +188,124 @@ export default function RegistroHumor() {
       </div>
     );
   }
+
+  return (
+    <div className={`min-h-screen py-8 ${isDark ? 'registro-humor-dark' : 'registro-humor-light'}`}>
+      <div className="container mx-auto px-4 max-w-2xl">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className={`text-4xl font-bold mb-4 ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+            Registro de Humor Diário
+            {error && retryCount < 3 && (
+              <span className={`ml-2 text-sm px-2 py-1 rounded ${
+                isDark ? 'text-orange-400 bg-orange-900' : 'text-orange-600 bg-orange-100'
+              }`}>
+                Tentando carregar... ({retryCount + 1}/3)
+              </span>
+            )}
+          </h1>
+          <p className={`text-xl ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          }`}>
+            Como você está se sentindo hoje? Compartilhe seu estado emocional.
+          </p>
+        </div>
+
+        {/* Formulário */}
+        <div className={`rounded-xl shadow-lg p-6 ${
+          isDark ? 'form-container-dark' : 'form-container-light'
+        }`}>
+          {submitSuccess && (
+            <div className={`rounded-lg p-4 mb-6 animate-fade-in ${
+              isDark ? 'bg-green-900 border-green-700' : 'bg-green-50 border-green-200'
+            }`}>
+              <div className="flex items-center">
+                <FiCheck className={`text-lg mr-2 ${
+                  isDark ? 'text-green-400' : 'text-green-600'
+                }`} />
+                <p className={isDark ? 'text-green-100 font-medium' : 'text-green-800 font-medium'}>
+                  Registro de humor salvo com sucesso!
+                </p>
+              </div>
+              <p className={`text-sm mt-1 ${
+                isDark ? 'text-green-200' : 'text-green-700'
+              }`}>
+                Seu registro foi armazenado e contribui para o monitoramento do bem-estar da equipe.
+              </p>
+            </div>
+          )}
+
+          {error && retryCount >= 3 && (
+            <div className={`rounded-lg p-4 mb-6 ${
+              isDark ? 'bg-red-900 border-red-700' : 'bg-red-50 border-red-200'
+            }`}>
+              <div className="flex items-center">
+                <IoWarning className={`text-lg mr-2 ${
+                  isDark ? 'text-red-400' : 'text-red-600'
+                }`} />
+                <div>
+                  <p className={isDark ? 'text-red-100 font-medium' : 'text-red-800 font-medium'}>
+                    {error}
+                  </p>
+                  <p className={`text-sm mt-1 ${
+                    isDark ? 'text-red-200' : 'text-red-700'
+                  }`}>
+                    A API está respondendo lentamente. Tente novamente.
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={handleRetry}
+                className={`mt-3 px-4 py-2 rounded-lg transition duration-300 text-sm flex items-center ${
+                  isDark
+                    ? 'bg-red-700 text-white hover:bg-red-600'
+                    : 'bg-red-600 text-white hover:bg-red-700'
+                }`}
+              >
+                <IoReload className="mr-2" />
+                Tentar Novamente
+              </button>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            {/* Empregado */}
+            <div>
+              <label className={`text-sm font-medium mb-2 flex items-center ${
+                isDark ? 'text-gray-200' : 'text-gray-700'
+              }`}>
+                <FiUser className="mr-1" />
+                Colaborador *
+              </label>
+              <select
+                {...register('empregado_id_empregado', { required: 'Selecione um colaborador' })}
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 disabled:cursor-not-allowed ${
+                  isDark
+                    ? 'bg-gray-700 border-gray-600 text-white disabled:bg-gray-800'
+                    : 'border-gray-300 disabled:bg-gray-100'
+                }`}
+                disabled={empregados.length === 0}
+              >
+                <option value="">
+                  {empregados.length === 0 ? 'Nenhum colaborador disponível' : 'Selecione um colaborador'}
+                </option>
+                {empregados.map(emp => (
+                  <option key={emp.id_empregado} value={emp.id_empregado}>
+                    {emp.nome} - {emp.tipo_colaborador}
+                  </option>
+                ))}
+              </select>
+              {errors.empregado_id_empregado && (
+                <p className="text-red-500 text-sm mt-1">{errors.empregado_id_empregado.message}</p>
+              )}
+              {empregados.length === 0 && !error && (
+                <p className={`text-sm mt-1 flex items-center ${
+                  isDark ? 'text-yellow-400' : 'text-yellow-600'
+                }`}>
+                  <FiAlertTriangle className="mr-1" />
+                  Nenhum colaborador cadastrado. Entre em contato com o administrador.
+                </p>
+              )}
+            </div>
