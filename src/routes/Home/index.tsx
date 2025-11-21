@@ -158,3 +158,37 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Features Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <div 
+              key={index}
+              className={`p-6 rounded-xl shadow-lg transition-all duration-500 transform ${
+                isDark ? 'feature-card-dark' : 'feature-card-light'
+              } ${activeFeature === index ? 'scale-105 shadow-xl' : 'scale-100'}`}
+            >
+              <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
+                feature.color === 'green' ? (
+                  isDark ? 'bg-green-900 text-green-400' : 'bg-green-100 text-green-600'
+                ) : feature.color === 'yellow' ? (
+                  isDark ? 'bg-yellow-900 text-yellow-400' : 'bg-yellow-100 text-yellow-600'
+                ) : (
+                  isDark ? 'bg-blue-900 text-blue-400' : 'bg-blue-100 text-blue-600'
+                )
+              }`}>
+                {feature.icon}
+              </div>
+              <h3 className={`text-xl font-bold mb-3 ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                {feature.title}
+              </h3>
+              <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
