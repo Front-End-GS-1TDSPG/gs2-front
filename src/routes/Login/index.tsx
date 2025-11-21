@@ -289,3 +289,76 @@ export default function Login() {
               </div>
             </div>
           </div>
+
+          {/* Right Side - Login Form */}
+          <div className={`rounded-2xl shadow-xl p-8 max-w-md mx-auto w-full ${isDark ? 'form-dark' : 'form-light'}`}>
+            <div className="text-center mb-8">
+              <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Fazer Login</h3>
+              <p className={`mt-2 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Entre com suas credenciais</p>
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              {/* Email */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  {...register('email', {
+                    required: 'Email é obrigatório',
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: 'Email inválido'
+                    }
+                  })}
+                  className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                    errors.email ? 'border-red-500' : isDark ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
+                  }`}
+                  placeholder="seu@email.com"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                    <FaTimes className="text-xs" />
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Senha *
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    {...register('senha', {
+                      required: 'Senha é obrigatória',
+                      minLength: {
+                        value: 6,
+                        message: 'Senha deve ter pelo menos 6 caracteres'
+                      }
+                    })}
+                    className={`w-full px-4 py-3 pr-12 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                      errors.senha ? 'border-red-500' : isDark ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
+                    }`}
+                    placeholder="Sua senha"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${
+                      isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-400 hover:text-gray-600'
+                    }`}
+                  >
+                    {showPassword ? <FaEyeSlash className="text-sm" /> : <FaEye className="text-sm" />}
+                  </button>
+                </div>
+                {errors.senha && (
+                  <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                    <FaTimes className="text-xs" />
+                    {errors.senha.message}
+                  </p>
+                )}
+              </div>
