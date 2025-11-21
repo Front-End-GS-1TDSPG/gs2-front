@@ -383,3 +383,38 @@ export default function FAQ() {
             )}
           </>
         )}
+        
+        {/* Contact CTA */}
+        <div className="max-w-4xl mx-auto">
+          <div className={`rounded-xl shadow-lg p-8 text-center ${
+            isDark 
+              ? 'bg-linear-to-r from-blue-700 to-purple-700 text-white' 
+              : 'bg-linear-to-r from-blue-600 to-purple-600 text-white'
+          }`}>
+            <h2 className="text-2xl font-bold mb-4">
+              Não encontrou o que procurava?
+            </h2>
+            <p className={`mb-6 max-w-2xl mx-auto ${
+              isDark ? 'text-blue-200' : 'text-blue-100'
+            }`}>
+              Nossa equipe de suporte está pronta para ajudar você com qualquer dúvida adicional.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button 
+                onClick={handleEntrarEmContato}
+                className={`px-6 py-3 rounded-lg font-semibold transition duration-300 flex items-center gap-2 mx-auto ${
+                  isDark
+                    ? 'bg-white text-blue-700 hover:bg-gray-100'
+                    : 'bg-white text-blue-600 hover:bg-gray-100'
+                }`}
+              >
+                {renderIcon('FaPhone')}
+                Entrar em Contato
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
