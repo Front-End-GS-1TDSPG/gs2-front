@@ -192,3 +192,70 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Stats Section */}
+      <section className={`py-16 ${isDark ? 'stats-section-dark' : 'stats-section-light'}`}>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {stats.map((stat, index) => (
+              <div key={index} className="transform hover:scale-110 transition duration-300">
+                <div className="flex justify-center mb-3">
+                  {index === 0 && <FiHeart className={`text-3xl ${
+                    isDark ? 'text-red-400' : 'text-red-500'
+                  }`} />}
+                  {index === 1 && <FiTrendingUp className={`text-3xl ${
+                    isDark ? 'text-green-400' : 'text-green-500'
+                  }`} />}
+                  {index === 2 && <IoHappy className={`text-3xl ${
+                    isDark ? 'text-yellow-400' : 'text-yellow-500'
+                  }`} />}
+                  {index === 3 && <MdHealthAndSafety className={`text-3xl ${
+                    isDark ? 'text-blue-400' : 'text-blue-500'
+                  }`} />}
+                </div>
+                <div className={`text-3xl md:text-4xl font-bold mb-2 ${
+                  isDark ? 'text-blue-400' : 'text-blue-600'
+                }`}>
+                  {stat.value}{stat.suffix}
+                </div>
+                <div className={isDark ? 'text-gray-300' : 'text-gray-600'}>
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="container mx-auto px-4 py-16 text-center">
+        <div className={`rounded-2xl p-8 md:p-12 text-white ${
+          isDark 
+            ? 'cta-section-dark' 
+            : 'cta-section-light'
+        }`}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center">
+            <FiStar className="mr-3" />
+            Pronto para transformar o bem-estar na sua empresa?
+            <FiStar className="ml-3" />
+          </h2>
+          <p className={`text-xl mb-8 max-w-2xl mx-auto ${
+            isDark ? 'text-blue-200' : 'text-blue-100'
+          }`}>
+            Junte-se a empresas visionárias que já estão investindo na saúde mental de seus colaboradores
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button 
+              onClick={handleSolicitarDemonstracao}
+              className={`px-8 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105 flex items-center justify-center ${
+                isDark
+                  ? 'bg-white text-blue-700 hover:bg-gray-100'
+                  : 'bg-white text-blue-600 hover:bg-gray-100'
+              }`}
+            >
+              <FiUsers className="mr-2" />
+              Solicitar Demonstração
+            </button>
+          </div>
+        </div>
+      </section>
