@@ -1,23 +1,12 @@
 import { useState, useEffect } from 'react';
 import type { TipoIntegrantes } from '../../types/tipoIntegrantes';
 import { useTheme } from '../../contexts/useTheme';
-
-type TabType = 'missao' | 'visao' | 'valores';
-
-interface TabContent {
-  title: string;
-  content: string;
-}
-
-interface TabContentMap {
-  missao: TabContent;
-  visao: TabContent;
-  valores: TabContent;
-}
+import type { TipoTabType } from '../../types/tipoContent';
+import { listaContent } from '../../data/listaContent';
 
 export default function Sobre() {
   const { isDark } = useTheme();
-  const [activeTab, setActiveTab] = useState<TabType>('missao');
+  const [activeTab, setActiveTab] = useState<TipoTabType>('missao');
   const [selectedMember, setSelectedMember] = useState<TipoIntegrantes | null>(null);
 
   const [metrics, setMetrics] = useState([
@@ -41,21 +30,6 @@ export default function Sobre() {
 
     return () => clearTimeout(timer);
   }, []);
-
-  const tabContent: TabContentMap = {
-    missao: {
-      title: "Nossa Missão",
-      content: "Promover ambientes de trabalho mais saudáveis e humanos através da tecnologia, reduzindo os índices de burnout e aumentando a qualidade de vida dos colaboradores."
-    },
-    visao: {
-      title: "Nossa Visão",
-      content: "Ser referência nacional em soluções de monitoramento de bem-estar corporativo, transformando a cultura organizacional das empresas brasileiras até 2030."
-    },
-    valores: {
-      title: "Nossos Valores",
-      content: "Transparência, empatia, inovação e compromisso com a saúde mental. Acreditamos que empresas saudáveis são mais produtivas e sustentáveis."
-    }
-  };
 
   const closeModal = () => {
     setSelectedMember(null);
@@ -101,7 +75,7 @@ export default function Sobre() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              {(Object.keys(tabContent) as TabType[]).map(tab => (
+              {(Object.keys(listaContent) as TipoTabType[]).map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -113,17 +87,17 @@ export default function Sobre() {
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                   }`}
                 >
-                  {tabContent[tab].title}
+                  {listaContent[tab].title}
                 </button>
               ))}
             </div>
             
             <div className={`p-8 rounded-xl shadow-lg ${isDark ? 'tab-content-dark' : 'tab-content-light'}`}>
               <h3 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                {tabContent[activeTab].title}
+                {listaContent[activeTab].title}
               </h3>
               <p className={`text-lg leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                {tabContent[activeTab].content}
+                {listaContent[activeTab].content}
               </p>
             </div>
           </div>
