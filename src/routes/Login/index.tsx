@@ -362,3 +362,119 @@ export default function Login() {
                   </p>
                 )}
               </div>
+
+              {/* Remember Me & Forgot Password */}
+              <div className="flex items-center justify-between">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    {...register('lembrar')}
+                    className={`w-4 h-4 rounded focus:ring-blue-500 ${
+                      isDark ? 'text-blue-500 bg-gray-700 border-gray-600' : 'text-blue-600'
+                    }`}
+                  />
+                  <span className={`ml-2 text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Lembrar-me</span>
+                </label>
+                <a 
+                  href="/recuperar-senha" 
+                  className={`text-sm hover:underline ${
+                    isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'
+                  }`}
+                >
+                  Esqueceu a senha?
+                </a>
+              </div>
+
+              {/* Login Error */}
+              {errors.root && (
+                <div className={`rounded-lg p-4 ${
+                  isDark ? 'bg-red-900 border border-red-700' : 'bg-red-50 border border-red-200'
+                }`}>
+                  <div className="flex items-center gap-2">
+                    <FaTimes className="text-red-600" />
+                    <p className={isDark ? 'text-red-100 text-sm' : 'text-red-800 text-sm'}>
+                      {errors.root.message}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isLoading}
+                className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition duration-300 flex items-center justify-center gap-2 ${
+                  isLoading
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105'
+                }`}
+              >
+                {isLoading ? (
+                  <>
+                    <FaSpinner className="animate-spin" />
+                    Entrando...
+                  </>
+                ) : (
+                  <>
+                    <FaLock />
+                    Entrar
+                  </>
+                )}
+              </button>
+
+              {/* Divider */}
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className={`w-full border-t ${isDark ? 'border-gray-600' : 'border-gray-300'}`}></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className={`px-2 ${isDark ? 'bg-gray-800 text-gray-400' : 'bg-white text-gray-500'}`}>ou</span>
+                </div>
+              </div>
+
+              {/* Register Link */}
+              <div className="text-center">
+                <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
+                  Não tem uma conta?{' '}
+                  <button 
+                    type="button"
+                    onClick={() => navigate('/cadastro')}
+                    className={`font-semibold flex items-center gap-1 mx-auto ${
+                      isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'
+                    }`}
+                  >
+                    Cadastre-se
+                    <FaArrowRight className="text-xs" />
+                  </button>
+                </p>
+              </div>
+            </form>
+
+            {/* Demo Credentials */}
+            <div className={`mt-8 p-4 rounded-lg ${isDark ? 'demo-credentials-dark' : 'demo-credentials-light'}`}>
+              <h4 className={`text-sm font-semibold mb-2 flex items-center gap-2 ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                <FaInfoCircle className={isDark ? 'text-blue-400' : 'text-blue-600'} />
+                Credenciais de Demonstração:
+              </h4>
+              <div className={`text-xs space-y-1 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                <p>Email: demo@mentaltech.com</p>
+                <p>Senha: 123456</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal de Mensagem */}
+      <MessageModal
+        isOpen={showModal}
+        title={modalMessage.title}
+        message={modalMessage.message}
+        type={modalMessage.type}
+        onClose={() => setShowModal(false)}
+      />
+    </div>
+  );
+}
