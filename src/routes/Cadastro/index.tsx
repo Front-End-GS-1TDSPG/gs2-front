@@ -124,3 +124,109 @@ const MessageModal: React.FC<MessageModalProps> = ({
     </div>
   );
 };
+
+export default function Cadastro() {
+  const navigate = useNavigate();
+  const { isDark } = useTheme();
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors, isSubmitting }, 
+    setError, 
+    setFocus,
+    getValues 
+  } = useForm<TipoCadastro>();
+  
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    senha: '',
+    termos: false
+  });
+
+  // Atualizar formData quando os campos mudarem
+  const handleInputChange = (field: keyof typeof formData, value: string | boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  useEffect(() => {
+    setFocus('nome');
+  }, [setFocus]);
+
+  // Estados para os modals
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState({ 
+    title: '', 
+    message: '', 
+    type: 'info' as 'success' | 'error' | 'warning' | 'info' 
+  });
+
+  const showMessage = (title: string, message: string, type: 'success' | 'error' | 'warning' | 'info' = 'info') => {
+    setModalMessage({ title, message, type });
+    setShowModal(true);
+  };
+
+  const onSubmit = async (data: TipoCadastro) => {
+    try {
+      // Verificar se email já está cadastrado
+      const savedUserData = localStorage.getItem('userData');
+      if (savedUserData) {
+        const existingUser: TipoUserData = JSON.parse(savedUserData);
+        if (existingUser.email === data.email) {
+          setError('email', { type: 'manual', message: 'Este email já está cadastrado' });
+          showMessage(
+            "Email em Uso", 
+            "Este email já está cadastrado em nosso sistema. Por favor, use outro email ou faça login.", 
+            'error'
+          );
+          return;
+        }
+      }
+
+      // Simula processamento do cadastro
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Salvar dados do usuário no localStorage
+      const userData: TipoUserData = {
+        nome: data.nome,
+        email: data.email,
+        empresa: data.empresa,
+        cargo: data.cargo
+      };
+
+      localStorage.setItem('userData', JSON.stringify(userData));
+      
+      // Mostrar modal de sucesso
+      showMessage(
+        "Cadastro Realizado!", 
+        "Seu cadastro foi realizado com sucesso! Redirecionando para a página de login...", 
+        'success'
+      );
+      
+      // Redirecionar para login após fechar o modal
+      setTimeout(() => {
+        navigate('/login', { 
+          state: { 
+            cadastroSuceso: true,
+            email: data.email
+          } 
+        });
+      }, 2000);
+      
+    } catch {
+      showMessage(
+        "Erro no Cadastro", 
+        "Houve um erro ao processar seu cadastro. Por favor, tente novamente.", 
+        'error'
+      );
+    }
+  };
+
+  // Função de validação personalizada para confirmarSenha
+  const validateConfirmPassword = (value: string) => {
+    const senha = getValues('senha');
+    return value === senha || 'As senhas não coincidem';
+  };
