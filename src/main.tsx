@@ -4,6 +4,7 @@ import App from './App.tsx'
 import "tailwindcss"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './routes/Home/index.tsx'
+import Error from './routes/Error/index.tsx'
 
 const router = createBrowserRouter([
   {path: "/", element: <App/>, errorElement: <Error/>, children:[
