@@ -275,3 +275,111 @@ export default function FAQ() {
             </div>
           </div>
         </div>
+
+        {/* Loading State */}
+        {loading ? (
+          <div className="flex justify-center items-center py-12">
+            {renderIcon('FaSpinner', `animate-spin h-12 w-12 ${isDark ? 'text-blue-400' : 'text-blue-600'}`)}
+            <span className={`ml-3 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Carregando FAQ...</span>
+          </div>
+        ) : (
+          <>
+            {/* Results Count */}
+            <div className="text-center mb-6">
+              <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
+                {filteredItems.length === faqItems.length 
+                  ? `Mostrando todas as ${faqItems.length} perguntas`
+                  : `Encontradas ${filteredItems.length} de ${faqItems.length} perguntas`
+                }
+                {selectedCategory !== 'all' && ` na categoria ${getCategoryName(selectedCategory)}`}
+              </p>
+            </div>
+
+            {/* FAQ Items */}
+            <div className="max-w-4xl mx-auto space-y-4 mb-12">
+              {filteredItems.map(item => (
+                <div
+                  key={item.id}
+                  className={`rounded-xl shadow-lg overflow-hidden transition-all duration-300 ${
+                    isDark ? 'faq-item-dark' : 'faq-item-light'
+                  }`}
+                >
+                  <button
+                    onClick={() => toggleFAQ(item.id)}
+                    className={`w-full px-6 py-4 text-left flex justify-between items-center transition duration-300 ${
+                      isDark 
+                        ? 'hover:bg-gray-700' 
+                        : 'hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <span className={`text-xl ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                        {renderIcon(categories.find(cat => cat.name === item.category)?.icon || 'FaQuestion', 'text-xl')}
+                      </span>
+                      <span className={`font-semibold text-lg ${
+                        isDark ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        {item.question}
+                      </span>
+                    </div>
+                    {renderIcon('FaChevronDown', `transform transition duration-300 ${
+                      isDark ? 'text-gray-400' : 'text-gray-400'
+                    } ${item.isOpen ? 'rotate-180' : 'rotate-0'}`)}
+                  </button>
+                  
+                  {item.isOpen && (
+                    <div className="px-6 pb-4 animate-fadeIn">
+                      <div className={`pl-12 border-l-2 ${
+                        isDark ? 'border-blue-400' : 'border-blue-500'
+                      }`}>
+                        <p className={`leading-relaxed ${
+                          isDark ? 'text-gray-300' : 'text-gray-600'
+                        }`}>
+                          {item.answer}
+                        </p>
+                        <div className="mt-3">
+                          <span className={`inline-block px-3 py-1 rounded-full text-sm ${
+                            isDark 
+                              ? 'bg-blue-900 text-blue-200' 
+                              : 'bg-blue-100 text-blue-800'
+                          }`}>
+                            {getCategoryName(item.category)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* No Results */}
+            {filteredItems.length === 0 && (
+              <div className="text-center py-12">
+                {renderIcon('FaQuestion', `text-6xl mx-auto mb-4 ${isDark ? 'text-gray-500' : 'text-gray-400'}`)}
+                <h3 className={`text-2xl font-bold mb-2 ${
+                  isDark ? 'text-white' : 'text-gray-900'
+                }`}>
+                  Nenhuma pergunta encontrada
+                </h3>
+                <p className={`mb-4 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                  Tente ajustar os termos da busca ou selecione outra categoria.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedCategory('all');
+                  }}
+                  className={`px-6 py-3 rounded-lg transition duration-300 flex items-center gap-2 mx-auto ${
+                    isDark
+                      ? 'bg-blue-600 text-white hover:bg-blue-700'
+                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                  }`}
+                >
+                  {renderIcon('FaTimes')}
+                  Limpar Filtros
+                </button>
+              </div>
+            )}
+          </>
+        )}
