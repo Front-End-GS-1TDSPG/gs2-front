@@ -182,3 +182,69 @@ export default function Cabecalho() {
             )}
           </button>
         </div>
+
+        {/* Menu Mobile */}
+        <div className={`lg:hidden transition-all duration-300 ${
+          isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <nav className="mobile-menu-nav">
+            {/* Saudação do usuário logado - Mobile */}
+            {userData && (
+              <div className="mobile-user-greeting">
+                <FaUser className="mobile-user-icon" />
+                <div className="mobile-user-text">
+                  Olá, <strong className="mobile-user-name">{userData.nome.split(' ')[0]}</strong>!
+                </div>
+              </div>
+            )}
+            
+            <ul className="mobile-menu-list max-h-[70vh] overflow-y-auto">
+              {menuItems.map((item) => (
+                item.hide ? null : (
+                  <li key={item.path}>
+                    <button
+                      onClick={() => handleNavigation(item.path, item.onClick)}
+                      className={`
+                        mobile-menu-item-base
+                        ${isActiveRoute(item.path)
+                          ? 'mobile-menu-item-active'
+                          : item.label === 'Sair'
+                          ? 'mobile-menu-item-logout'
+                          : item.label === 'Login'
+                          ? 'mobile-menu-item-login'
+                          : item.label === 'Cadastro'
+                          ? 'mobile-menu-item-cadastro'
+                          : 'mobile-menu-item-inactive'
+                        }
+                      `}
+                    >
+                      {item.icon}
+                      <span className="mobile-menu-label">{item.label}</span>
+                    </button>
+                  </li>
+                )
+              ))}
+              
+              {/* Botão de alternância de tema - Mobile */}
+              <li>
+                <button
+                  onClick={toggleTheme}
+                  className="theme-toggle-mobile"
+                >
+                  {isDark ? (
+                    <FaSun className="theme-icon-sun" />
+                  ) : (
+                    <FaMoon className="theme-icon-moon" />
+                  )}
+                  <span className="mobile-menu-label">
+                    {isDark ? "Modo Claro" : "Modo Escuro"}
+                  </span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+}
