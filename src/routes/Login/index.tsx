@@ -231,3 +231,61 @@ export default function Login() {
       setIsLoading(false);
     }
   };
+
+  const [stats, setStats] = useState({
+    usuariosAtivos: 0,
+    empresasCadastradas: 0,
+    satisfacao: 0
+  });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStats({
+        usuariosAtivos: 1250,
+        empresasCadastradas: 45,
+        satisfacao: 98
+      });
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className={`min-h-screen flex items-center justify-center py-8 ${isDark ? 'login-dark' : 'login-light'}`}>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+          {/* Left Side - Branding */}
+          <div className="text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start space-x-3 mb-8">
+              <div className="logo-icon">
+                <span className="logo-icon-text">W</span>
+              </div>
+              <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>MentalTech</h1>
+            </div>
+            
+            <h2 className={`text-4xl lg:text-5xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Bem-vindo de volta
+            </h2>
+            <p className={`text-xl mb-8 max-w-md ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+              Acesse sua conta para continuar monitorando o bem-estar da sua equipe.
+            </p>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 max-w-md">
+              <div className="text-center">
+                <FaUser className={`text-xl mx-auto mb-2 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
+                <div className={`text-2xl font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>{stats.usuariosAtivos}+</div>
+                <div className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Usuários Ativos</div>
+              </div>
+              <div className="text-center">
+                <FaBuilding className={`text-xl mx-auto mb-2 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
+                <div className={`text-2xl font-bold ${isDark ? 'text-green-400' : 'text-green-600'}`}>{stats.empresasCadastradas}+</div>
+                <div className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Empresas</div>
+              </div>
+              <div className="text-center">
+                <FaSmile className={`text-xl mx-auto mb-2 ${isDark ? 'text-purple-400' : 'text-purple-600'}`} />
+                <div className={`text-2xl font-bold ${isDark ? 'text-purple-400' : 'text-purple-600'}`}>{stats.satisfacao}%</div>
+                <div className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Satisfação</div>
+              </div>
+            </div>
+          </div>
