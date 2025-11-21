@@ -315,3 +315,176 @@ export default function GerenciarHumor() {
       </div>
     );
   }
+
+  return (
+    <div className={`min-h-screen py-8 ${isDark ? 'gerenciar-humor-dark' : 'gerenciar-humor-light'}`}>
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className={`text-4xl font-bold mb-4 ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+            Gerenciar Registros de Humor
+            {error && retryCount < 3 && (
+              <span className={`ml-2 text-sm px-2 py-1 rounded ${
+                isDark ? 'text-orange-400 bg-orange-900' : 'text-orange-600 bg-orange-100'
+              }`}>
+                Tentando carregar... ({retryCount + 1}/3)
+              </span>
+            )}
+          </h1>
+          <p className={`text-xl ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          }`}>
+            Visualize, edite e gerencie todos os registros de humor da equipe
+          </p>
+        </div>
+
+        {successMessage && (
+          <div className={`rounded-lg p-4 mb-6 animate-fade-in ${
+            isDark ? 'bg-green-900 border-green-700' : 'bg-green-50 border-green-200'
+          }`}>
+            <div className="flex items-center">
+              <FiCheck className={`text-lg mr-2 ${
+                isDark ? 'text-green-400' : 'text-green-600'
+              }`} />
+              <p className={isDark ? 'text-green-100 font-medium' : 'text-green-800 font-medium'}>
+                {successMessage}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {error && retryCount >= 3 && (
+          <div className={`rounded-lg p-4 mb-6 ${
+            isDark ? 'bg-red-900 border-red-700' : 'bg-red-50 border-red-200'
+          }`}>
+            <div className="flex items-center">
+              <IoWarning className={`text-lg mr-2 ${
+                isDark ? 'text-red-400' : 'text-red-600'
+              }`} />
+              <div>
+                <p className={isDark ? 'text-red-100 font-medium' : 'text-red-800 font-medium'}>
+                  {error}
+                </p>
+                <p className={`text-sm mt-1 ${
+                  isDark ? 'text-red-200' : 'text-red-700'
+                }`}>
+                  A API está respondendo lentamente. Tente novamente.
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={handleRetry}
+              className={`mt-3 px-4 py-2 rounded-lg transition duration-300 text-sm flex items-center ${
+                isDark 
+                  ? 'bg-red-700 text-white hover:bg-red-600' 
+                  : 'bg-red-600 text-white hover:bg-red-700'
+              }`}
+            >
+              <IoReload className="mr-2" />
+              Tentar Novamente
+            </button>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Lista de Registros */}
+          <div>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className={`text-2xl font-bold ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                Registros ({filteredRegistros.length})
+                <span className={`text-sm font-normal ml-2 ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  de {registros.length} total
+                </span>
+              </h2>
+              
+              {/* Filtros */}
+              <div className="flex space-x-2">
+                <select
+                  value={filterEmpregado}
+                  onChange={(e) => setFilterEmpregado(e.target.value ? Number(e.target.value) : '')}
+                  className={`px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm ${
+                    isDark 
+                      ? 'bg-gray-700 border-gray-600 text-white' 
+                      : 'border-gray-300'
+                  }`}
+                >
+                  <option value="">Todos os colaboradores</option>
+                  {empregados.map(emp => (
+                    <option key={emp.id_empregado} value={emp.id_empregado}>
+                      {emp.nome}
+                    </option>
+                  ))}
+                </select>
+                
+                <input
+                  type="date"
+                  value={filterDate}
+                  onChange={(e) => setFilterDate(e.target.value)}
+                  className={`px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm ${
+                    isDark 
+                      ? 'bg-gray-700 border-gray-600 text-white' 
+                      : 'border-gray-300'
+                  }`}
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              {filteredRegistros.map(registro => (
+                <div key={registro.id_registro} className={`rounded-xl shadow-lg p-6 border hover:shadow-xl transition duration-300 ${
+                  isDark 
+                    ? 'bg-gray-800 border-gray-700 hover:border-gray-600' 
+                    : 'bg-white border-gray-200 hover:border-gray-300'
+                }`}>
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className={`font-semibold text-lg ${
+                        isDark ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        {getEmpregadoNome(registro.empregado_id_empregado)}
+                      </h3>
+                      <p className={`text-sm ${
+                        isDark ? 'text-gray-400' : 'text-gray-600'
+                      }`}>
+                        {new Date(registro.data_registro).toLocaleDateString('pt-BR')}
+                      </p>
+                    </div>
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => handleEdit(registro)}
+                        className={`p-2 rounded-lg transition duration-200 ${
+                          isDark
+                            ? 'text-blue-400 hover:text-blue-300 hover:bg-blue-900'
+                            : 'text-blue-600 hover:text-blue-800 hover:bg-blue-50'
+                        }`}
+                        title="Editar"
+                        disabled={loadingAction}
+                      >
+                        {loadingAction && editingId === registro.id_registro ? (
+                          <div className={`animate-spin rounded-full h-4 w-4 border-b-2 ${
+                            isDark ? 'border-blue-400' : 'border-blue-600'
+                          }`}></div>
+                        ) : (
+                          <FiEdit size={16} />
+                        )}
+                      </button>
+                      <button
+                        onClick={() => setDeleteConfirm(registro.id_registro)}
+                        className={`p-2 rounded-lg transition duration-200 ${
+                          isDark
+                            ? 'text-red-400 hover:text-red-300 hover:bg-red-900'
+                            : 'text-red-600 hover:text-red-800 hover:bg-red-50'
+                        }`}
+                        title="Excluir"
+                        disabled={loadingAction}
+                      >
+                        <FiTrash2 size={16} />
+                      </button>
+                    </div>
+                  </div>
