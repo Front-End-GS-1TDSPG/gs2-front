@@ -1,1 +1,503 @@
 @import "tailwindcss";
+
+
+/* Estilos para os temas */
+.light-mode {
+  @apply bg-white text-gray-900;
+}
+
+.dark-mode {
+  @apply bg-gray-900 text-white;
+}
+
+/* Estilos do Cabeçalho */
+.header-base {
+  @apply sticky top-0 z-50 transition-all duration-300;
+}
+
+.header-default {
+  @apply shadow-sm;
+}
+
+.header-scrolled {
+  @apply shadow-lg border-b;
+}
+
+.light-header {
+  @apply bg-white border-gray-100;
+}
+
+.dark-header {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.logo-container {
+  @apply w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300;
+}
+
+.logo-text {
+  @apply text-white font-bold text-lg;
+}
+
+.logo-title {
+  @apply text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+}
+
+.user-greeting {
+  @apply bg-blue-50 text-blue-800 px-4 py-2 rounded-full border border-blue-200 text-sm font-medium flex items-center gap-2;
+}
+
+.user-icon {
+  @apply text-blue-600;
+}
+
+.user-name {
+  @apply text-blue-900;
+}
+
+.menu-item-base {
+  @apply flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200;
+}
+
+.menu-item-active {
+  @apply bg-blue-50 text-blue-600 border border-blue-200 shadow-sm;
+}
+
+.menu-item-logout {
+  @apply bg-red-500 hover:bg-red-600 text-white;
+}
+
+.menu-item-login {
+  @apply bg-blue-500 hover:bg-blue-600 text-white;
+}
+
+.menu-item-cadastro {
+  @apply bg-green-500 hover:bg-green-600 text-white;
+}
+
+.menu-item-inactive {
+  @apply text-gray-600 hover:text-gray-900 hover:bg-gray-50;
+}
+
+.dark-header .menu-item-active {
+  @apply bg-blue-900 text-blue-100 border-blue-700;
+}
+
+.dark-header .menu-item-inactive {
+  @apply text-gray-300 hover:text-white hover:bg-gray-700;
+}
+
+.theme-toggle-desktop {
+  @apply flex items-center justify-center w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 transition-all duration-200 ml-2;
+}
+
+.dark-header .theme-toggle-desktop {
+  @apply bg-gray-700 hover:bg-gray-600;
+}
+
+.theme-icon-sun {
+  @apply w-5 h-5 text-yellow-500;
+}
+
+.theme-icon-moon {
+  @apply w-5 h-5 text-gray-700;
+}
+
+.dark-header .theme-icon-moon {
+  @apply text-gray-300;
+}
+
+.mobile-menu-toggle {
+  @apply lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-all duration-200 active:scale-95;
+}
+
+.dark-header .mobile-menu-toggle {
+  @apply hover:bg-gray-700;
+}
+
+.menu-toggle-icon {
+  @apply w-6 h-6 text-gray-700;
+}
+
+.dark-header .menu-toggle-icon {
+  @apply text-gray-300;
+}
+
+.lg\:hidden {
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.max-h-screen {
+  max-height: 100vh;
+}
+
+.max-h-0 {
+  max-height: 0;
+}
+
+/* Garantir que a lista seja scrollável */
+.mobile-menu-list {
+  @apply space-y-2 max-h-[70vh] overflow-y-auto;
+}
+
+/* Personalizar a scrollbar para melhor aparência */
+.mobile-menu-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mobile-menu-list::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+.dark-header .mobile-menu-list::-webkit-scrollbar-track {
+  @apply bg-gray-700;
+}
+
+.mobile-menu-list::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.dark-header .mobile-menu-list::-webkit-scrollbar-thumb {
+  @apply bg-gray-500;
+}
+
+.mobile-menu-list::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+.dark-header .mobile-menu-list::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+.mobile-menu-nav {
+  @apply py-4 border-t;
+}
+
+.light-header .mobile-menu-nav {
+  @apply border-gray-100;
+}
+
+.dark-header .mobile-menu-nav {
+  @apply border-gray-700;
+}
+
+.mobile-user-greeting {
+  @apply px-4 py-3 border-b mb-2 flex items-center gap-2;
+}
+
+.light-header .mobile-user-greeting {
+  @apply border-gray-100 bg-blue-50;
+}
+
+.dark-header .mobile-user-greeting {
+  @apply border-gray-700 bg-blue-900;
+}
+
+.mobile-user-icon {
+  @apply text-blue-600;
+}
+
+.dark-header .mobile-user-icon {
+  @apply text-blue-300;
+}
+
+.mobile-user-text {
+  @apply text-blue-800 text-sm font-medium;
+}
+
+.dark-header .mobile-user-text {
+  @apply text-blue-200;
+}
+
+.mobile-user-name {
+  @apply text-blue-900;
+}
+
+.dark-header .mobile-user-name {
+  @apply text-blue-100;
+}
+
+.mobile-menu-list {
+  @apply space-y-2;
+}
+
+.mobile-menu-item-base {
+  @apply w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 active:scale-95;
+}
+
+.mobile-menu-item-active {
+  @apply bg-blue-50 text-blue-600 border border-blue-200 shadow-sm;
+}
+
+.mobile-menu-item-logout {
+  @apply bg-red-500 text-white hover:bg-red-600;
+}
+
+.mobile-menu-item-login {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
+}
+
+.mobile-menu-item-cadastro {
+  @apply bg-green-500 text-white hover:bg-green-600;
+}
+
+.mobile-menu-item-inactive {
+  @apply text-gray-600 hover:text-gray-900 hover:bg-gray-50;
+}
+
+.dark-header .mobile-menu-item-active {
+  @apply bg-blue-900 text-blue-100 border-blue-700;
+}
+
+.dark-header .mobile-menu-item-inactive {
+  @apply text-gray-300 hover:text-white hover:bg-gray-700;
+}
+
+.mobile-menu-label {
+  @apply font-medium;
+}
+
+.theme-toggle-mobile {
+  @apply w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900;
+}
+
+.dark-header .theme-toggle-mobile {
+  @apply bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white;
+}
+
+/* Estilos do Rodapé */
+.footer-base {
+  @apply py-8;
+}
+
+.footer-light {
+  @apply bg-gray-800 text-white;
+}
+
+.footer-dark {
+  @apply bg-gray-900 text-white;
+}
+
+.footer-title {
+  @apply text-xl font-bold mb-4;
+}
+
+.footer-subtitle {
+  @apply font-semibold mb-4;
+}
+
+.footer-text {
+  @apply transition duration-300;
+}
+
+.footer-text-light {
+  @apply text-gray-400;
+}
+
+.footer-text-dark {
+  @apply text-gray-300;
+}
+
+.footer-list {
+  @apply space-y-2 transition duration-300;
+}
+
+.footer-list-light {
+  @apply text-gray-400;
+}
+
+.footer-list-dark {
+  @apply text-gray-300;
+}
+
+.footer-link {
+  @apply hover:text-white transition duration-300;
+}
+
+.footer-bottom {
+  @apply border-t mt-8 pt-8 text-center transition duration-300;
+}
+
+.footer-bottom-light {
+  @apply border-gray-700 text-gray-400;
+}
+
+.footer-bottom-dark {
+  @apply border-gray-800 text-gray-300;
+}
+
+/* Estilos para o componente Cadastro */
+.cadastro-light {
+  @apply bg-gradient-to-br from-blue-50 to-indigo-100;
+}
+
+.cadastro-dark {
+  @apply bg-gradient-to-br from-gray-800 to-gray-900;
+}
+
+.logo-icon {
+  @apply w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center;
+}
+
+.logo-icon-text {
+  @apply text-white font-bold;
+}
+
+.benefits-light {
+  @apply bg-white text-gray-900;
+}
+
+.benefits-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.form-light {
+  @apply bg-white text-gray-900;
+}
+
+.form-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.stat-light-blue {
+  @apply bg-blue-50 text-blue-600;
+}
+
+.stat-light-green {
+  @apply bg-green-50 text-green-600;
+}
+
+.stat-dark {
+  @apply bg-gray-700 text-gray-300;
+}
+
+/* Estilos para inputs no dark mode */
+.dark input::placeholder {
+  @apply text-gray-400;
+}
+
+.dark select {
+  @apply bg-gray-700 border-gray-600 text-white;
+}
+
+.dark select option {
+  @apply bg-gray-700 text-white;
+}
+
+/* Estilos para o componente Login */
+.login-light {
+  @apply bg-gradient-to-br from-blue-50 to-indigo-100;
+}
+
+.login-dark {
+  @apply bg-gradient-to-br from-gray-800 to-gray-900;
+}
+
+.logo-icon {
+  @apply w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center;
+}
+
+.logo-icon-text {
+  @apply text-white text-xl font-bold;
+}
+
+.form-light {
+  @apply bg-white text-gray-900;
+}
+
+.form-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.demo-credentials-light {
+  @apply bg-gray-50 text-gray-900;
+}
+
+.demo-credentials-dark {
+  @apply bg-gray-700 text-white;
+}
+
+/* Estilos para inputs no dark mode */
+.dark input::placeholder {
+  @apply text-gray-400;
+}
+
+.dark input:focus {
+  @apply ring-2 ring-blue-500;
+}
+
+/* Estilos para o checkbox no dark mode */
+.dark input[type="checkbox"] {
+  @apply bg-gray-700 border-gray-600;
+}
+
+.dark input[type="checkbox"]:checked {
+  @apply bg-blue-500 border-blue-500;
+}
+
+/* Estilos para links no dark mode */
+.dark a {
+  @apply text-blue-400;
+}
+
+.dark a:hover {
+  @apply text-blue-300;
+}
+
+/* Estilos para o componente Contato */
+.contato-light {
+  @apply bg-gray-50;
+}
+
+.contato-dark {
+  @apply bg-gray-900;
+}
+
+.contact-info-light {
+  @apply bg-white text-gray-900;
+}
+
+.contact-info-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.contact-form-light {
+  @apply bg-white text-gray-900;
+}
+
+.contact-form-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.hours-light {
+  @apply bg-blue-50 text-gray-900;
+}
+
+.hours-dark {
+  @apply bg-blue-900 text-white;
+}
+
+/* Estilos para inputs no dark mode */
+.dark input::placeholder {
+  @apply text-gray-400;
+}
+
+.dark textarea::placeholder {
+  @apply text-gray-400;
+}
+
+.dark select {
+  @apply bg-gray-700 border-gray-600 text-white;
+}
+
+.dark select option {
+  @apply bg-gray-700 text-white;
+}
+
+/* Estilos para focus states no dark mode */
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  @apply ring-2 ring-blue-500;
+}
