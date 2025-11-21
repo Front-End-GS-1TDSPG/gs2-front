@@ -48,3 +48,48 @@ export default function Cabecalho() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    setUserData(null);
+    setIsMenuOpen(false);
+    window.location.reload();
+  };
+
+  const menuItems = [
+    { path: "/", label: "Início", icon: <FaHome className="text-base" /> },
+    { path: "/dashboard", label: "Dashboard", icon: <FaChartBar className="text-base" /> },
+    { path: "/registro-humor", label: "Registrar Humor", icon: <FaSmile className="text-base" /> },
+    { path: "/gerenciar-humor", label: "Gerenciar Humor", icon: <FaEdit className="text-base" /> },
+    { path: "/sobre", label: "Sobre", icon: <FaInfoCircle className="text-base" /> },
+    { path: "/integrantes", label: "Integrantes", icon: <FaUsers className="text-base" /> },
+    { path: "/faq", label: "FAQ", icon: <FaQuestionCircle className="text-base" /> },
+    { path: "/contato", label: "Contato", icon: <FaEnvelope className="text-base" /> },
+    { 
+      path: "/login", 
+      label: userData ? "Sair" : "Login", 
+      icon: userData ? <FaSignOutAlt className="text-base" /> : <FaSignInAlt className="text-base" />,
+      onClick: userData ? handleLogout : undefined
+    },
+    { 
+      path: "/cadastro", 
+      label: "Cadastro", 
+      icon: <FaRocket className="text-base" />,
+      hide: !!userData // Esconder cadastro se usuário estiver logado
+    },
+  ];
+
+  const isActiveRoute = (path: string) => {
+    return location.pathname === path;
+  };
+
+  const handleNavigation = (path: string, onClick?: () => void) => {
+    if (onClick) {
+      onClick();
+    } else {
+      navigate(path);
+      setIsMenuOpen(false);
+    }
+  };
