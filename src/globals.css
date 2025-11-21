@@ -1552,3 +1552,387 @@
 .retry-button-dark {
   @apply bg-red-700 text-white hover:bg-red-600;
 }
+
+/* Estilos para texto informativo */
+.info-text-light {
+  @apply text-gray-500;
+}
+
+.info-text-dark {
+  @apply text-gray-400;
+}
+
+/* Estilos para labels */
+.label-light {
+  @apply text-gray-700;
+}
+
+.label-dark {
+  @apply text-gray-200;
+}
+
+/* Estilos para animações */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Estilos para ícones de informação */
+.info-icon-light {
+  @apply text-blue-600;
+}
+
+.info-icon-dark {
+  @apply text-blue-400;
+}
+
+/* Estilos para o contador de observações */
+.observacao-count-low-light {
+  @apply text-red-600 bg-red-50;
+}
+
+.observacao-count-low-dark {
+  @apply text-red-400 bg-red-900;
+}
+
+.observacao-count-medium-light {
+  @apply text-yellow-600 bg-yellow-50;
+}
+
+.observacao-count-medium-dark {
+  @apply text-yellow-400 bg-yellow-900;
+}
+
+.observacao-count-high-light {
+  @apply text-green-600 bg-green-50;
+}
+
+.observacao-count-high-dark {
+  @apply text-green-400 bg-green-900;
+}
+
+/* Estilos para o botão de submit desabilitado */
+.submit-disabled-light {
+  @apply bg-gray-400 cursor-not-allowed;
+}
+
+.submit-disabled-dark {
+  @apply bg-gray-500 cursor-not-allowed;
+}
+
+/* Estilos para o select desabilitado */
+.select-disabled-light {
+  @apply bg-gray-100;
+}
+
+.select-disabled-dark {
+  @apply bg-gray-800;
+}
+
+/* Estilos para o componente Dashboard */
+.dashboard-light {
+  @apply bg-gray-50;
+}
+
+.dashboard-dark {
+  @apply bg-gray-900;
+}
+
+.section-light {
+  @apply bg-white text-gray-900;
+}
+
+.section-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.stat-card-light {
+  @apply bg-white text-gray-900;
+}
+
+.stat-card-dark {
+  @apply bg-gray-800 text-white;
+}
+
+/* Estilos para alertas */
+.alerta-critico-light {
+  @apply bg-red-100 text-red-800 border-red-200;
+}
+
+.alerta-critico-dark {
+  @apply bg-red-900 text-red-200 border-red-700;
+}
+
+.alerta-alto-light {
+  @apply bg-orange-100 text-orange-800 border-orange-200;
+}
+
+.alerta-alto-dark {
+  @apply bg-orange-900 text-orange-200 border-orange-700;
+}
+
+.alerta-medio-light {
+  @apply bg-yellow-100 text-yellow-800 border-yellow-200;
+}
+
+.alerta-medio-dark {
+  @apply bg-yellow-900 text-yellow-200 border-yellow-700;
+}
+
+.alerta-baixo-light {
+  @apply bg-blue-100 text-blue-800 border-blue-200;
+}
+
+.alerta-baixo-dark {
+  @apply bg-blue-900 text-blue-200 border-blue-700;
+}
+
+/* Estilos para cards de departamento */
+.departamento-card-light {
+  @apply border-gray-200;
+}
+
+.departamento-card-dark {
+  @apply border-gray-700 hover:bg-gray-800;
+}
+
+/* Estilos para registros de humor */
+.registro-humor-light {
+  @apply border-gray-200 hover:bg-gray-50;
+}
+
+.registro-humor-dark {
+  @apply border-gray-700 hover:bg-gray-800;
+}
+
+/* Estilos para botões */
+.reload-button-light {
+  @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+}
+
+.reload-button-dark {
+  @apply bg-gray-700 text-gray-300 hover:bg-gray-600;
+}
+
+.retry-button-light {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.retry-button-dark {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+/* Estilos para ícones de estatísticas */
+.stat-icon-blue-light {
+  @apply text-blue-600;
+}
+
+.stat-icon-blue-dark {
+  @apply text-blue-400;
+}
+
+.stat-icon-green-light {
+  @apply text-green-600;
+}
+
+.stat-icon-green-dark {
+  @apply text-green-400;
+}
+
+.stat-icon-red-light {
+  @apply text-red-600;
+}
+
+.stat-icon-red-dark {
+  @apply text-red-400;
+}
+
+.stat-icon-purple-light {
+  @apply text-purple-600;
+}
+
+.stat-icon-purple-dark {
+  @apply text-purple-400;
+}
+
+/* Estilos para cores de humor */
+.humor-excelente-light {
+  @apply text-green-600;
+}
+
+.humor-excelente-dark {
+  @apply text-green-400;
+}
+
+.humor-bom-light {
+  @apply text-yellow-600;
+}
+
+.humor-bom-dark {
+  @apply text-yellow-400;
+}
+
+.humor-ruim-light {
+  @apply text-red-600;
+}
+
+.humor-ruim-dark {
+  @apply text-red-400;
+}
+
+/* Estilos para cores de estresse */
+.estresse-baixo-light {
+  @apply text-green-600;
+}
+
+.estresse-baixo-dark {
+  @apply text-green-400;
+}
+
+.estresse-medio-light {
+  @apply text-yellow-600;
+}
+
+.estresse-medio-dark {
+  @apply text-yellow-400;
+}
+
+.estresse-alto-light {
+  @apply text-red-600;
+}
+
+.estresse-alto-dark {
+  @apply text-red-400;
+}
+
+/* Estilos para estados vazios */
+.empty-state-light {
+  @apply text-gray-500;
+}
+
+.empty-state-dark {
+  @apply text-gray-400;
+}
+
+.empty-state-icon-light {
+  @apply text-gray-400;
+}
+
+.empty-state-icon-dark {
+  @apply text-gray-500;
+}
+
+/* Estilos para indicador de carregamento */
+.loading-indicator-light {
+  @apply text-orange-600 bg-orange-100;
+}
+
+.loading-indicator-dark {
+  @apply text-orange-400 bg-orange-900;
+}
+
+/* Estilos para animações */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Estilos para hover effects */
+.hover-scale-light {
+  @apply hover:shadow-xl transition duration-300;
+}
+
+.hover-scale-dark {
+  @apply hover:shadow-xl hover:shadow-gray-900 transition duration-300;
+}
+
+.hover-alerta-light {
+  @apply hover:shadow-md transition duration-200;
+}
+
+.hover-alerta-dark {
+  @apply hover:shadow-md hover:shadow-gray-900 transition duration-200;
+}
+
+.hover-departamento-light {
+  @apply hover:shadow-md transition duration-200;
+}
+
+.hover-departamento-dark {
+  @apply hover:shadow-md hover:shadow-gray-900 transition duration-200;
+}
+
+/* Responsividade para telas até 1400px */
+@media (max-width: 1400px) {
+  .header-nav {
+    @apply hidden;
+  }
+  
+  .mobile-menu-toggle {
+    @apply block;
+  }
+}
+
+/* Ajustes específicos para o menu desktop em telas grandes */
+@media (min-width: 1401px) {
+  .header-nav {
+    @apply flex;
+  }
+  
+  .mobile-menu-toggle {
+    @apply hidden;
+  }
+}
+
+/* Ajustes para telas médias */
+@media (max-width: 1024px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .user-greeting {
+    @apply text-sm;
+  }
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 768px) {
+  .logo-title {
+    @apply text-lg;
+  }
+  
+  .user-greeting {
+    @apply hidden;
+  }
+}
+
+/* Garantir que o menu mobile funcione corretamente */
+@media (max-width: 1400px) {
+  .lg\:hidden {
+    @apply block;
+  }
+  
+  .lg\:flex {
+    @apply hidden;
+  }
+}
