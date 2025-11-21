@@ -361,3 +361,198 @@ export default function Cadastro() {
                     </p>
                   )}
                 </div>
+
+                 {/* Empresa e Cargo */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                      Empresa
+                    </label>
+                    <input
+                      type="text"
+                      {...register('empresa')}
+                      className={`w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                        isDark ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
+                      }`}
+                      placeholder="Sua empresa"
+                    />
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                      Cargo
+                    </label>
+                    <select
+                      {...register('cargo')}
+                      className={`w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                        isDark ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
+                      }`}
+                    >
+                      <option value="">Selecione seu cargo</option>
+                      <option value="rh">Recursos Humanos</option>
+                      <option value="gestor">Gestor/Líder</option>
+                      <option value="ceo">CEO/Diretor</option>
+                      <option value="outro">Outro</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Senha */}
+                <div>
+                  <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                    Senha *
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      {...register('senha', {
+                        required: 'Senha é obrigatória',
+                        minLength: {
+                          value: 6,
+                          message: 'Senha deve ter pelo menos 6 caracteres'
+                        },
+                        onChange: (e) => handleInputChange('senha', e.target.value)
+                      })}
+                      className={`w-full px-3 py-2 pr-10 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                        errors.senha ? 'border-red-500' : isDark ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
+                      }`}
+                      placeholder="Crie uma senha"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${
+                        isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-400 hover:text-gray-600'
+                      }`}
+                    >
+                      {showPassword ? <FaEyeSlash className="text-sm" /> : <FaEye className="text-sm" />}
+                    </button>
+                  </div>
+                  {errors.senha && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                      <FaTimes className="text-xs" />
+                      {errors.senha.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Confirmar Senha */}
+                <div>
+                  <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                    Confirmar Senha *
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      {...register('confirmarSenha', {
+                        required: 'Confirme sua senha',
+                        validate: validateConfirmPassword
+                      })}
+                      className={`w-full px-3 py-2 pr-10 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                        errors.confirmarSenha ? 'border-red-500' : isDark ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
+                      }`}
+                      placeholder="Confirme sua senha"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${
+                        isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-400 hover:text-gray-600'
+                      }`}
+                    >
+                      {showConfirmPassword ? <FaEyeSlash className="text-sm" /> : <FaEye className="text-sm" />}
+                    </button>
+                  </div>
+                  {errors.confirmarSenha && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                      <FaTimes className="text-xs" />
+                      {errors.confirmarSenha.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Termos */}
+                <div className="flex items-start space-x-2">
+                  <input
+                    type="checkbox"
+                    {...register('termos', {
+                      required: 'Você deve aceitar os termos'
+                    })}
+                    onChange={(e) => handleInputChange('termos', e.target.checked)}
+                    className={`w-4 h-4 mt-1 rounded focus:ring-blue-500 ${
+                      isDark ? 'text-blue-500 bg-gray-700 border-gray-600' : 'text-blue-600'
+                    }`}
+                  />
+                  <label className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                    Concordo com os{' '}
+                    <a href="/termos" className={`hover:underline ${isDark ? 'text-blue-400' : 'text-blue-600 hover:text-blue-800'}`}>
+                      Termos de Uso
+                    </a>{' '}
+                    e{' '}
+                    <a href="/privacidade" className={`hover:underline ${isDark ? 'text-blue-400' : 'text-blue-600 hover:text-blue-800'}`}>
+                      Política de Privacidade
+                    </a>
+                  </label>
+                </div>
+                {errors.termos && (
+                  <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                    <FaTimes className="text-xs" />
+                    {errors.termos.message}
+                  </p>
+                )}
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting || !formData.termos}
+                  className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition duration-300 mt-4 flex items-center justify-center gap-2 ${
+                    isSubmitting || !formData.termos
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105'
+                  }`}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <FaSpinner className="animate-spin" />
+                      Criando conta...
+                    </>
+                  ) : (
+                    <>
+                      <FaRocket />
+                      Criar Minha Conta
+                    </>
+                  )}
+                </button>
+
+                {/* Login Link */}
+                <div className="text-center">
+                  <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                    Já tem uma conta?{' '}
+                    <button 
+                      type="button"
+                      onClick={() => navigate('/login')}
+                      className={`font-semibold flex items-center gap-1 mx-auto ${
+                        isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'
+                      }`}
+                    >
+                      Fazer Login
+                      <FaArrowRight className="text-xs" />
+                    </button>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal de Mensagem */}
+      <MessageModal
+        isOpen={showModal}
+        title={modalMessage.title}
+        message={modalMessage.message}
+        type={modalMessage.type}
+        onClose={() => setShowModal(false)}
+      />
+    </div>
+  );
+}
