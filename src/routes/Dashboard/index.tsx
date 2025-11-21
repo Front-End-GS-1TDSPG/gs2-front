@@ -360,3 +360,120 @@ export default function Dashboard() {
               )}
             </div>
           </div>
+
+          {/* Alertas Recentes */}
+          <div className={`rounded-xl shadow-lg p-6 ${
+            isDark ? 'section-dark' : 'section-light'
+          }`}>
+            <h2 className={`text-2xl font-bold mb-6 flex items-center ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}>
+              <FiBell className={`mr-2 ${
+                isDark ? 'text-orange-400' : 'text-orange-500'
+              }`} />
+              Alertas de Bem-Estar
+            </h2>
+            <div className="space-y-4">
+              {alertas.slice(0, 5).map(alerta => (
+                <div 
+                  key={alerta.id_alerta} 
+                  className={`p-4 border rounded-lg hover:shadow-md transition duration-200 ${getAlertaColor(alerta.nivel_risco)}`}
+                >
+                  <div className="flex items-center mb-2">
+                    {getAlertaIcon(alerta.nivel_risco)}
+                    <div className="font-semibold ml-2">{alerta.tipo_alerta}</div>
+                  </div>
+                  <div className="text-sm mb-2">{alerta.descricao_alerta}</div>
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="flex items-center">
+                      <FiBarChart2 className="mr-1" />
+                      Nível: {alerta.nivel_risco}
+                    </span>
+                    <span className="flex items-center">
+                      <FiCalendar className="mr-1" />
+                      {new Date(alerta.data_geracao).toLocaleDateString('pt-BR')}
+                    </span>
+                  </div>
+                </div>
+              ))}
+              {alertas.length === 0 && (
+                <div className={`text-center py-8 flex flex-col items-center ${
+                  isDark ? 'text-gray-400' : 'text-gray-500'
+                }`}>
+                  <FiTrendingUp className={`text-4xl mb-2 ${
+                    isDark ? 'text-gray-500' : 'text-gray-400'
+                  }`} />
+                  Nenhum alerta encontrado
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Departamentos */}
+        <div className={`mt-8 rounded-xl shadow-lg p-6 ${
+          isDark ? 'section-dark' : 'section-light'
+        }`}>
+          <h2 className={`text-2xl font-bold mb-6 flex items-center ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+            <MdGroups className={`mr-2 ${
+              isDark ? 'text-blue-400' : 'text-blue-500'
+            }`} />
+            Departamentos
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {departamentos.map(depto => (
+              <div key={depto.id_departamento} className={`border rounded-lg p-4 hover:shadow-md transition duration-200 ${
+                isDark ? 'border-gray-700 hover:bg-gray-800' : 'border-gray-200'
+              }`}>
+                <div className={`font-semibold mb-2 flex items-center ${
+                  isDark ? 'text-white' : 'text-gray-900'
+                }`}>
+                  <FiHome className={`mr-2 ${
+                    isDark ? 'text-gray-500' : 'text-gray-400'
+                  }`} />
+                  {depto.nome_departamento}
+                </div>
+                <div className={`text-sm mb-2 ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>{depto.descricao}</div>
+                <div className={`text-sm font-medium flex items-center ${
+                  isDark ? 'text-blue-400' : 'text-blue-600'
+                }`}>
+                  <FiUsers className="mr-1" />
+                  {depto.quantidade_colaboradores} colaboradores
+                </div>
+              </div>
+            ))}
+            {departamentos.length === 0 && (
+              <div className={`col-span-full text-center py-8 flex flex-col items-center ${
+                isDark ? 'text-gray-400' : 'text-gray-500'
+              }`}>
+                <FiHome className={`text-4xl mb-2 ${
+                  isDark ? 'text-gray-500' : 'text-gray-400'
+                }`} />
+                Nenhum departamento encontrado
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Botão de recarregar */}
+        <div className="mt-8 text-center">
+          <button
+            onClick={loadDashboardData}
+            className={`px-6 py-2 rounded-lg transition duration-300 flex items-center mx-auto ${
+              isDark
+                ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            <FiRefreshCw className={`mr-2 ${loading ? 'animate-spin' : ''}`} />
+            Atualizar Dados
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
