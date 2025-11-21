@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/useTheme";
 
 export default function Rodape() {
   const { isDark } = useTheme();
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
 
   return (
     <footer className={`footer-base ${isDark ? 'footer-dark' : 'footer-light'}`}>
@@ -17,9 +23,30 @@ export default function Rodape() {
           <div>
             <h4 className="footer-subtitle">Links Rápidos</h4>
             <ul className={`footer-list ${isDark ? 'footer-list-dark' : 'footer-list-light'}`}>
-              <li><a href="/" className="footer-link">Início</a></li>
-              <li><a href="/sobre" className="footer-link">Sobre</a></li>
-              <li><a href="/faq" className="footer-link">FAQ</a></li>
+              <li>
+                <button 
+                  onClick={() => handleNavigation("/")} 
+                  className="footer-link cursor-pointer hover:underline"
+                >
+                  Início
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => handleNavigation("/sobre")} 
+                  className="footer-link cursor-pointer hover:underline"
+                >
+                  Sobre
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => handleNavigation("/faq")} 
+                  className="footer-link cursor-pointer hover:underline"
+                >
+                  FAQ
+                </button>
+              </li>
             </ul>
           </div>
           
