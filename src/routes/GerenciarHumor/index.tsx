@@ -634,4 +634,141 @@ export default function GerenciarHumor() {
                 )}
               </h2>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6"></form>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {/* Empregado */}
+                <div>
+                  <label className={`text-sm font-medium mb-2 flex items-center ${
+                    isDark ? 'text-gray-200' : 'text-gray-700'
+                  }`}>
+                    <FiUser className="mr-1" />
+                    Colaborador *
+                  </label>
+                  <select
+                    {...register('empregado_id_empregado', { required: 'Selecione um colaborador' })}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                      isDark 
+                        ? 'bg-gray-700 border-gray-600 text-white' 
+                        : 'border-gray-300'
+                    }`}
+                  >
+                    <option value="">Selecione um colaborador</option>
+                    {empregados.map(emp => (
+                      <option key={emp.id_empregado} value={emp.id_empregado}>
+                        {emp.nome} - {emp.tipo_colaborador}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.empregado_id_empregado && (
+                    <p className="text-red-500 text-sm mt-1">{errors.empregado_id_empregado.message}</p>
+                  )}
+                </div>
+
+                {/* Data */}
+                <div>
+                  <label className={`text-sm font-medium mb-2 flex items-center ${
+                    isDark ? 'text-gray-200' : 'text-gray-700'
+                  }`}>
+                    <FiCalendar className="mr-1" />
+                    Data do Registro *
+                  </label>
+                  <input
+                    type="date"
+                    {...register('data_registro', { required: 'Data é obrigatória' })}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                      isDark 
+                        ? 'bg-gray-700 border-gray-600 text-white' 
+                        : 'border-gray-300'
+                    }`}
+                  />
+                  {errors.data_registro && (
+                    <p className="text-red-500 text-sm mt-1">{errors.data_registro.message}</p>
+                  )}
+                </div>
+
+                {/* Nível de Humor */}
+                <div className={`rounded-lg p-4 border ${
+                  isDark ? 'bg-blue-900 border-blue-700' : 'bg-blue-50 border-blue-200'
+                }`}>
+                  <label className={`text-sm font-medium mb-4 flex items-center justify-between ${
+                    isDark ? 'text-gray-200' : 'text-gray-700'
+                  }`}>
+                    <span className="flex items-center">
+                      <FiSmile className="mr-1" />
+                      Nível de Humor:
+                    </span>
+                    <span className="text-2xl">{getHumorIcon(nivelHumor)}</span>
+                  </label>
+                  <div className="flex items-center space-x-4 mb-3">
+                    <MdSentimentVeryDissatisfied className={isDark ? 'text-gray-400' : 'text-gray-600'} />
+                    <input
+                      type="range"
+                      min="1"
+                      max="5"
+                      {...register('nivel_humor', { 
+                        required: 'Nível de humor é obrigatório',
+                        valueAsNumber: true 
+                      })}
+                      className={`flex-1 h-2 rounded-lg appearance-none cursor-pointer ${
+                        isDark ? 'bg-blue-700' : 'bg-blue-200'
+                      }`}
+                    />
+                    <MdSentimentVerySatisfied className={isDark ? 'text-gray-400' : 'text-gray-600'} />
+                  </div>
+                  <div className="text-center">
+                    <span className={`text-lg font-semibold px-3 py-1 rounded-full border ${
+                      isDark 
+                        ? 'text-blue-400 bg-gray-800 border-blue-600' 
+                        : 'text-blue-600 bg-white border-blue-200'
+                    }`}>
+                      {nivelHumor}/5
+                    </span>
+                  </div>
+                  {errors.nivel_humor && (
+                    <p className="text-red-500 text-sm mt-1 text-center">{errors.nivel_humor.message}</p>
+                  )}
+                </div>
+
+                {/* Nível de Estresse */}
+                <div className={`rounded-lg p-4 border ${
+                  isDark ? 'bg-orange-900 border-orange-700' : 'bg-orange-50 border-orange-200'
+                }`}>
+                  <label className={`text-sm font-medium mb-4 flex items-center justify-between ${
+                    isDark ? 'text-gray-200' : 'text-gray-700'
+                  }`}>
+                    <span className="flex items-center">
+                      <FiFrown className="mr-1" />
+                      Nível de Estresse:
+                    </span>
+                    <span className="text-2xl">{getEstresseIcon(nivelEstresse)}</span>
+                  </label>
+                  <div className="flex items-center space-x-4 mb-3">
+                    <IoHappy className={isDark ? 'text-gray-400' : 'text-gray-600'} />
+                    <input
+                      type="range"
+                      min="1"
+                      max="5"
+                      {...register('nivel_estresse', { 
+                        required: 'Nível de estresse é obrigatório',
+                        valueAsNumber: true 
+                      })}
+                      className={`flex-1 h-2 rounded-lg appearance-none cursor-pointer ${
+                        isDark ? 'bg-orange-700' : 'bg-orange-200'
+                      }`}
+                    />
+                    <MdSick className={isDark ? 'text-gray-400' : 'text-gray-600'} />
+                  </div>
+                  <div className="text-center">
+                    <span className={`text-lg font-semibold px-3 py-1 rounded-full border ${
+                      isDark 
+                        ? 'text-orange-400 bg-gray-800 border-orange-600' 
+                        : 'text-orange-600 bg-white border-orange-200'
+                    }`}>
+                      {nivelEstresse}/5
+                    </span>
+                  </div>
+                  {errors.nivel_estresse && (
+                    <p className="text-red-500 text-sm mt-1 text-center">{errors.nivel_estresse.message}</p>
+                  )}
+                </div>
+              </form>
+
