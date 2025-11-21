@@ -488,3 +488,150 @@ export default function GerenciarHumor() {
                       </button>
                     </div>
                   </div>
+
+                  {/* Níveis */}
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className={`text-center p-3 rounded-lg border-2 ${getHumorColor(registro.nivel_humor)}`}>
+                      <div className="flex justify-center mb-1">{getHumorIcon(registro.nivel_humor)}</div>
+                      <div className="font-semibold">Humor</div>
+                      <div className="text-lg font-bold">{registro.nivel_humor}/5</div>
+                    </div>
+                    <div className={`text-center p-3 rounded-lg border-2 ${getEstresseColor(registro.nivel_estresse)}`}>
+                      <div className="flex justify-center mb-1">{getEstresseIcon(registro.nivel_estresse)}</div>
+                      <div className="font-semibold">Estresse</div>
+                      <div className="text-lg font-bold">{registro.nivel_estresse}/5</div>
+                    </div>
+                  </div>
+
+                  {/* Observação */}
+                  <div className={`border-t pt-4 ${
+                    isDark ? 'border-gray-700' : 'border-gray-200'
+                  }`}>
+                    <p className={`text-sm mb-2 flex items-center ${
+                      isDark ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      <FiFileText className="mr-1" />
+                      <strong>Observações:</strong>
+                    </p>
+                    <p className={`p-3 rounded-lg border ${
+                      isDark 
+                        ? 'text-gray-300 bg-gray-700 border-gray-600' 
+                        : 'text-gray-600 bg-gray-50 border-gray-200'
+                    }`}>
+                      {registro.observacao || 'Nenhuma observação fornecida'}
+                    </p>
+                    {registro.observacao && (
+                      <div className={`mt-2 text-xs text-right ${
+                        isDark ? 'text-gray-500' : 'text-gray-500'
+                      }`}>
+                        {registro.observacao.length} caracteres
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Modal de Confirmação de Exclusão */}
+                  {deleteConfirm === registro.id_registro && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                      <div className={`rounded-xl p-6 max-w-md w-full ${
+                        isDark ? 'modal-dark' : 'modal-light'
+                      }`}>
+                        <h3 className={`text-lg font-bold mb-4 flex items-center ${
+                          isDark ? 'text-white' : 'text-gray-900'
+                        }`}>
+                          <FiAlertTriangle className={`mr-2 ${
+                            isDark ? 'text-red-400' : 'text-red-600'
+                          }`} />
+                          Confirmar Exclusão
+                        </h3>
+                        <p className={`mb-6 ${
+                          isDark ? 'text-gray-300' : 'text-gray-600'
+                        }`}>
+                          Tem certeza que deseja excluir o registro de humor de <strong>{getEmpregadoNome(registro.empregado_id_empregado)}</strong> do dia <strong>{new Date(registro.data_registro).toLocaleDateString('pt-BR')}</strong>? Esta ação não pode ser desfeita.
+                        </p>
+                        <div className="flex justify-end space-x-3">
+                          <button
+                            onClick={() => setDeleteConfirm(null)}
+                            className={`px-4 py-2 transition duration-200 disabled:opacity-50 flex items-center ${
+                              isDark
+                                ? 'text-gray-400 hover:text-white'
+                                : 'text-gray-600 hover:text-gray-800'
+                            }`}
+                            disabled={loadingAction}
+                          >
+                            <FiX className="mr-1" />
+                            Cancelar
+                          </button>
+                          <button
+                            onClick={() => handleDelete(registro.id_registro)}
+                            className={`px-4 py-2 rounded-lg transition duration-200 disabled:opacity-50 flex items-center ${
+                              isDark
+                                ? 'bg-red-700 text-white hover:bg-red-600'
+                                : 'bg-red-600 text-white hover:bg-red-700'
+                            }`}
+                            disabled={loadingAction}
+                          >
+                            {loadingAction ? (
+                              <div className="flex items-center">
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                Excluindo...
+                              </div>
+                            ) : (
+                              <>
+                                <FiTrash2 className="mr-1" />
+                                Excluir
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {filteredRegistros.length === 0 && (
+                <div className={`rounded-xl shadow-lg p-8 text-center ${
+                  isDark ? 'bg-gray-800' : 'bg-white'
+                }`}>
+                  <div className="flex justify-center mb-4">
+                    <MdSentimentNeutral className={`text-6xl ${
+                      isDark ? 'text-gray-500' : 'text-gray-400'
+                    }`} />
+                  </div>
+                  <h3 className={`text-xl font-bold mb-2 ${
+                    isDark ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {registros.length === 0 ? 'Nenhum registro encontrado' : 'Nenhum registro com os filtros aplicados'}
+                  </h3>
+                  <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>
+                    {registros.length === 0 
+                      ? 'Comece criando o primeiro registro de humor!' 
+                      : 'Tente alterar os filtros para ver mais registros.'}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Formulário */}
+          <div id="form-section">
+            <div className={`rounded-xl shadow-lg p-6 sticky top-6 ${
+              isDark ? 'form-container-dark' : 'form-container-light'
+            }`}>
+              <h2 className={`text-2xl font-bold mb-6 flex items-center ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                {editingId ? (
+                  <>
+                    <FiEdit className="mr-2" />
+                    Editar Registro
+                  </>
+                ) : (
+                  <>
+                    <FiPlus className="mr-2" />
+                    Novo Registro
+                  </>
+                )}
+              </h2>
+
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6"></form>
