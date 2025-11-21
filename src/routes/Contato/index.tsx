@@ -488,3 +488,99 @@ export default function Contato() {
                     </p>
                   )}
                 </div>
+
+                {/* Mensagem */}
+                <div>
+                  <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                    Mensagem *
+                  </label>
+                  <textarea
+                    value={formData.mensagem}
+                    onChange={(e) => handleInputChange('mensagem', e.target.value)}
+                    rows={6}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 resize-none ${
+                      errors.mensagem 
+                        ? 'border-red-500' 
+                        : isDark 
+                          ? 'border-gray-600 bg-gray-700 text-white' 
+                          : 'border-gray-300'
+                    }`}
+                    placeholder="Descreva sua dúvida, solicitação ou feedback..."
+                    maxLength={1000}
+                  />
+                  <div className="flex justify-between items-center mt-2">
+                    <div>
+                      {errors.mensagem && (
+                        <p className="text-red-500 text-sm flex items-center gap-1">
+                          <FaTimes className="text-xs" />
+                          {errors.mensagem}
+                        </p>
+                      )}
+                    </div>
+                    <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {charCount}/1000 caracteres
+                    </div>
+                  </div>
+                </div>
+
+                {/* Status do Envio */}
+                {submitStatus === 'success' && (
+                  <div className={`rounded-lg p-4 ${
+                    isDark 
+                      ? 'bg-green-900 border border-green-700' 
+                      : 'bg-green-50 border border-green-200'
+                  }`}>
+                    <div className="flex items-center gap-2">
+                      <FaCheck className={isDark ? 'text-green-400 text-lg' : 'text-green-600 text-lg'} />
+                      <p className={isDark ? 'text-green-100' : 'text-green-800'}>
+                        Mensagem enviada com sucesso! Entraremos em contato em breve.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className={`rounded-lg p-4 ${
+                    isDark 
+                      ? 'bg-red-900 border border-red-700' 
+                      : 'bg-red-50 border border-red-200'
+                  }`}>
+                    <div className="flex items-center gap-2">
+                      <FaTimes className={isDark ? 'text-red-400 text-lg' : 'text-red-600 text-lg'} />
+                      <p className={isDark ? 'text-red-100' : 'text-red-800'}>
+                        Erro ao enviar mensagem. Tente novamente ou entre em contato por outro canal.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Botão de Envio */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition duration-300 flex items-center justify-center gap-2 ${
+                    isSubmitting
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105'
+                  }`}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <FaSpinner className="text-lg animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <FaPaperPlane className="text-lg" />
+                      Enviar Mensagem
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
