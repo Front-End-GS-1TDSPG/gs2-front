@@ -93,3 +93,92 @@ export default function Cabecalho() {
       setIsMenuOpen(false);
     }
   };
+
+    return (
+    <header className={`header-base ${isScrolled ? 'header-scrolled' : 'header-default'} ${
+      isDark ? 'dark-header' : 'light-header'
+    }`}>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div 
+            className="flex items-center space-x-3 cursor-pointer group"
+            onClick={() => handleNavigation('/')}
+          >
+            <div className="logo-container">
+              <span className="logo-text">M</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="logo-title">
+                MentalTech
+              </span>
+            </div>
+          </div>
+
+          {/* Saudação do usuário logado - Desktop */}
+          {userData && (
+            <div className="hidden lg:flex items-center space-x-4 mr-4">
+              <div className="user-greeting">
+                <FaUser className="user-icon" />
+                Olá, <strong className="user-name">{userData.nome.split(' ')[0]}</strong>!
+              </div>
+            </div>
+          )}
+
+          {/* Menu Desktop */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            <ul className="flex items-center space-x-1">
+              {menuItems.map((item) => (
+                item.hide ? null : (
+                  <li key={item.path}>
+                    <button
+                      onClick={() => handleNavigation(item.path, item.onClick)}
+                      className={`
+                        menu-item-base
+                        ${isActiveRoute(item.path)
+                          ? 'menu-item-active'
+                          : item.label === 'Sair'
+                          ? 'menu-item-logout'
+                          : item.label === 'Login'
+                          ? 'menu-item-login'
+                          : item.label === 'Cadastro'
+                          ? 'menu-item-cadastro'
+                          : 'menu-item-inactive'
+                        }
+                      `}
+                    >
+                      {item.icon}
+                      <span>{item.label}</span>
+                    </button>
+                  </li>
+                )
+              ))}
+            </ul>
+            
+            {/* Botão de alternância de tema - Desktop */}
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle-desktop"
+              aria-label={isDark ? "Ativar modo claro" : "Ativar modo escuro"}
+            >
+              {isDark ? (
+                <FaSun className="theme-icon-sun" />
+              ) : (
+                <FaMoon className="theme-icon-moon" />
+              )}
+            </button>
+          </nav>
+
+          {/* Menu Mobile Toggle */}
+          <button 
+            className="mobile-menu-toggle"
+            onClick={toggleMenu}
+            aria-label="Abrir menu"
+          >
+            {isMenuOpen ? (
+              <FaTimes className="menu-toggle-icon" />
+            ) : (
+              <FaBars className="menu-toggle-icon" />
+            )}
+          </button>
+        </div>
