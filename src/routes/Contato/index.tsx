@@ -15,6 +15,7 @@ import {
   FaSpinner
 } from 'react-icons/fa';
 import { useTheme } from '../../contexts/useTheme';
+import { listaAssuntos, listaContato } from '../../data/listaContato';
 
 type FormData = {
   nome: string;
@@ -55,50 +56,10 @@ export default function Contato() {
   const [charCount, setCharCount] = useState(0);
 
   // Métodos de contato
-  const [contactMethods, setContactMethods] = useState<ContactMethod[]>([
-    {
-      id: 1,
-      tipo: 'email',
-      valor: 'contato@mentaltech.com',
-      icone: 'FaEnvelope',
-      descricao: 'Nosso email principal',
-      cor: 'blue'
-    },
-    {
-      id: 2,
-      tipo: 'telefone',
-      valor: '(11) 3772-3828',
-      icone: 'FaPhone',
-      descricao: 'Horário comercial',
-      cor: 'green'
-    },
-    {
-      id: 3,
-      tipo: 'whatsapp',
-      valor: '(11) 9525-6800',
-      icone: 'FaWhatsapp',
-      descricao: 'Atendimento rápido',
-      cor: 'green'
-    },
-    {
-      id: 4,
-      tipo: 'endereco',
-      valor: 'Av. Paulista, 1106 - São Paulo/SP',
-      icone: 'FaMapMarkerAlt',
-      descricao: 'Nossa sede',
-      cor: 'red'
-    }
-  ]);
+  const [contactMethods, setContactMethods] = useState<ContactMethod[]>([]);
 
   // Assuntos disponíveis
-  const assuntos = [
-    'Dúvida sobre o produto',
-    'Solicitar demonstração',
-    'Suporte técnico',
-    'Parceria comercial',
-    'Trabalhe conosco',
-    'Outro'
-  ];
+  const assuntos = listaAssuntos;
 
   // Renderiza ícone baseado no nome
   const renderIcon = (iconName: string, color: string, size: string = 'text-2xl') => {
@@ -138,10 +99,10 @@ export default function Contato() {
     }
   };
 
-  // Simula carregamento de métodos de contato
+  // Carrega métodos de contato
   useEffect(() => {
     const timer = setTimeout(() => {
-      setContactMethods(prev => [...prev]);
+      setContactMethods(listaContato);
     }, 500);
 
     return () => clearTimeout(timer);
