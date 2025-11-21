@@ -251,3 +251,102 @@ export default function Contato() {
     const formatted = formatPhone(value);
     handleInputChange('telefone', formatted);
   };
+
+  return (
+    <div className={`min-h-screen py-8 ${isDark ? 'contato-dark' : 'contato-light'}`}>
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Entre em Contato
+          </h1>
+          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+            Estamos aqui para ajudar você. Entre em contato conosco e responderemos o mais breve possível.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {/* Informações de Contato */}
+          <div className="lg:col-span-1">
+            <div className={`rounded-xl shadow-lg p-6 sticky top-6 ${isDark ? 'contact-info-dark' : 'contact-info-light'}`}>
+              <h2 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Nossos Canais
+              </h2>
+              
+              <div className="space-y-4">
+                {contactMethods.map(method => (
+                  <div
+                    key={method.id}
+                    className={`flex items-start space-x-4 p-4 rounded-lg border transition duration-300 ${
+                      isDark 
+                        ? 'border-gray-700 hover:border-blue-500 bg-gray-800' 
+                        : 'border-gray-200 hover:border-blue-500 bg-white'
+                    }`}
+                  >
+                    {renderIcon(method.icone, method.cor)}
+                    <div>
+                      <h3 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                        {method.valor}
+                      </h3>
+                      <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                        {method.descricao}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Horário de Atendimento */}
+              <div className={`mt-8 p-4 rounded-lg ${
+                isDark ? 'hours-dark' : 'hours-light'
+              }`}>
+                <div className="flex items-center gap-2 mb-2">
+                  {renderIcon('FaClock', 'blue', 'text-lg')}
+                  <h3 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    Horário de Atendimento
+                  </h3>
+                </div>
+                <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                  Segunda a Sexta: 8h às 18h<br />
+                  Sábado: 9h às 12h
+                </p>
+              </div>
+
+              {/* Redes Sociais */}
+              <div className="mt-6">
+                <h3 className={`font-semibold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                  Siga-nos
+                </h3>
+                <div className="flex space-x-4">
+                  <button className={`w-10 h-10 rounded-full flex items-center justify-center transition duration-300 ${
+                    isDark 
+                      ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                  }`}>
+                    <FaFacebook className="text-lg" />
+                  </button>
+                  <button className={`w-10 h-10 rounded-full flex items-center justify-center transition duration-300 ${
+                    isDark 
+                      ? 'bg-blue-400 text-white hover:bg-blue-500' 
+                      : 'bg-blue-400 text-white hover:bg-blue-500'
+                  }`}>
+                    <FaTwitter className="text-lg" />
+                  </button>
+                  <button className={`w-10 h-10 rounded-full flex items-center justify-center transition duration-300 ${
+                    isDark 
+                      ? 'bg-blue-800 text-white hover:bg-blue-900' 
+                      : 'bg-blue-800 text-white hover:bg-blue-900'
+                  }`}>
+                    <FaLinkedin className="text-lg" />
+                  </button>
+                  <button className={`w-10 h-10 rounded-full flex items-center justify-center transition duration-300 ${
+                    isDark 
+                      ? 'bg-gray-700 text-white hover:bg-gray-600' 
+                      : 'bg-gray-800 text-white hover:bg-gray-900'
+                  }`}>
+                    <FaGithub className="text-lg" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
