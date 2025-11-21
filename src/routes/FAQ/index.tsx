@@ -176,3 +176,44 @@ export default function FAQ() {
 
     loadFAQData();
   }, []); 
+
+  // Filtra itens baseado na busca e categoria
+  useEffect(() => {
+    let filtered = faqItems;
+
+    // Filtro por categoria
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(item => item.category === selectedCategory);
+    }
+
+    // Filtro por busca
+    if (searchTerm.trim() !== '') {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(item =>
+        item.question.toLowerCase().includes(term) ||
+        item.answer.toLowerCase().includes(term)
+      );
+    }
+
+    setFilteredItems(filtered);
+  }, [searchTerm, selectedCategory, faqItems]);
+
+  const toggleFAQ = (id: number) => {
+    setFaqItems(prevItems =>
+      prevItems.map(item =>
+        item.id === id ? { ...item, isOpen: !item.isOpen } : item
+      )
+    );
+  };
+
+  const getCategoryName = (category: string): string => {
+    const categoryMap: Record<string, string> = {
+      'all': 'Todos',
+      'geral': 'Geral',
+      'tecnico': 'Técnico',
+      'conta': 'Conta',
+      'seguranca': 'Segurança',
+      'empresa': 'Empresa'
+    };
+    return categoryMap[category] || category;
+  };
