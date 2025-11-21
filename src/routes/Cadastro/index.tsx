@@ -230,3 +230,134 @@ export default function Cadastro() {
     const senha = getValues('senha');
     return value === senha || 'As senhas não coincidem';
   };
+
+  return (
+    <div className={`min-h-screen py-8 ${isDark ? 'cadastro-dark' : 'cadastro-light'}`}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="logo-icon">
+                <span className="logo-icon-text">W</span>
+              </div>
+              <h1 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>MentalTech</h1>
+            </div>
+            <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Criar sua Conta
+            </h2>
+            <p className={`max-w-2xl mx-auto ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+              Junte-se a empresas que já estão transformando o bem-estar de seus colaboradores
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left Side - Benefits */}
+            <div className={`rounded-2xl shadow-xl p-6 ${isDark ? 'benefits-dark' : 'benefits-light'}`}>
+              <h3 className={`text-xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>Vantagens da MentalTech</h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <FaChartLine className={`text-lg mt-1 shrink-0 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
+                  <div>
+                    <h4 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>Monitoramento em Tempo Real</h4>
+                    <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Acompanhe o bem-estar da sua equipe instantaneamente</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <FaBell className={`text-lg mt-1 shrink-0 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
+                  <div>
+                    <h4 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>Alertas Inteligentes</h4>
+                    <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Receba notificações proativas sobre a saúde mental</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <FaFileAlt className={`text-lg mt-1 shrink-0 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
+                  <div>
+                    <h4 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>Relatórios Detalhados</h4>
+                    <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Analytics completos sobre o clima organizacional</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <FaHeadset className={`text-lg mt-1 shrink-0 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
+                  <div>
+                    <h4 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>Suporte Dedicado</h4>
+                    <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Equipe especializada para ajudar sua empresa</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <div className={`text-center p-4 rounded-lg ${isDark ? 'stat-dark' : 'stat-light-blue'}`}>
+                  <FaBuilding className={`text-xl mx-auto mb-2 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
+                  <div className={`text-xl font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>45+</div>
+                  <div className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Empresas</div>
+                </div>
+                <div className={`text-center p-4 rounded-lg ${isDark ? 'stat-dark' : 'stat-light-green'}`}>
+                  <FaCheck className={`text-xl mx-auto mb-2 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
+                  <div className={`text-xl font-bold ${isDark ? 'text-green-400' : 'text-green-600'}`}>98%</div>
+                  <div className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Satisfação</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Registration Form */}
+            <div className={`rounded-2xl shadow-xl p-6 ${isDark ? 'form-dark' : 'form-light'}`}>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                {/* Nome */}
+                <div>
+                  <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                    Nome Completo *
+                  </label>
+                  <input
+                    type="text"
+                    {...register('nome', {
+                      required: 'Nome é obrigatório',
+                      minLength: {
+                        value: 2,
+                        message: 'Nome deve ter pelo menos 2 caracteres'
+                      }
+                    })}
+                    className={`w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                      errors.nome ? 'border-red-500' : isDark ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
+                    }`}
+                    placeholder="Seu nome completo"
+                  />
+                  {errors.nome && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                      <FaTimes className="text-xs" />
+                      {errors.nome.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    {...register('email', {
+                      required: 'Email é obrigatório',
+                      pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: 'Email inválido'
+                      }
+                    })}
+                    className={`w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ${
+                      errors.email ? 'border-red-500' : isDark ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
+                    }`}
+                    placeholder="seu@email.com"
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                      <FaTimes className="text-xs" />
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
