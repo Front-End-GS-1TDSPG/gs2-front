@@ -116,3 +116,45 @@ export default function Home() {
   const handleSolicitarDemonstracao = () => {
     navigate('/dashboard');
   };
+
+  return (
+    <div className={`min-h-screen ${isDark ? 'home-dark' : 'home-light'}`}>
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="text-center">
+          <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Monitoramento de 
+            <span className={isDark ? 'text-blue-400' : 'text-blue-600'}> Bem-Estar</span>
+          </h1>
+          <p className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          }`}>
+            Promovendo ambientes de trabalho mais saudáveis e sustentáveis através do cuidado com a saúde mental dos colaboradores
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button 
+              onClick={handleComecarAgora}
+              className={`px-8 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105 flex items-center justify-center ${
+                isDark
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'bg-blue-600 hover:bg-blue-700 text-white'
+              }`}
+            >
+              <IoRocket className="mr-2" />
+              Começar Agora
+              <FiArrowRight className="ml-2" />
+            </button>
+            <button 
+              onClick={handleSaibaMais}
+              className={`border-2 px-8 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105 flex items-center justify-center ${
+                isDark
+                  ? 'border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900'
+                  : 'border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'
+              }`}
+            >
+              <FiTarget className="mr-2" />
+              Saiba Mais
+            </button>
+          </div>
+        </div>
+      </section>
