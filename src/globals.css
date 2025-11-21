@@ -501,3 +501,506 @@
 .dark select:focus {
   @apply ring-2 ring-blue-500;
 }
+
+/* Estilos para ícones de redes sociais no dark mode */
+.dark .social-icon {
+  @apply bg-gray-700 text-white hover:bg-gray-600;
+}
+
+/* Estilos para bordas e hover states */
+.dark .contact-method {
+  @apply border-gray-700 hover:border-blue-500 bg-gray-800;
+}
+
+.light .contact-method {
+  @apply border-gray-200 hover:border-blue-500 bg-white;
+}
+
+/* Estilos para o contador de caracteres */
+.dark .char-count {
+  @apply text-gray-400;
+}
+
+.light .char-count {
+  @apply text-gray-500;
+}
+
+/* Estilos para mensagens de status */
+.dark .success-message {
+  @apply bg-green-900 border-green-700 text-green-100;
+}
+
+.light .success-message {
+  @apply bg-green-50 border-green-200 text-green-800;
+}
+
+.dark .error-message {
+  @apply bg-red-900 border-red-700 text-red-100;
+}
+
+.light .error-message {
+  @apply bg-red-50 border-red-200 text-red-800;
+}
+
+/* Estilos para o componente FAQ */
+.faq-light {
+  @apply bg-gray-50;
+}
+
+.faq-dark {
+  @apply bg-gray-900;
+}
+
+.search-filters-light {
+  @apply bg-white;
+}
+
+.search-filters-dark {
+  @apply bg-gray-800;
+}
+
+.faq-item-light {
+  @apply bg-white;
+}
+
+.faq-item-dark {
+  @apply bg-gray-800;
+}
+
+/* Estilos para inputs no dark mode */
+.dark input::placeholder {
+  @apply text-gray-400;
+}
+
+.dark input:focus {
+  @apply ring-2 ring-blue-500;
+}
+
+/* Estilos para animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Estilos para ícones e textos */
+.dark .faq-category-badge {
+  @apply bg-blue-900 text-blue-200;
+}
+
+.light .faq-category-badge {
+  @apply bg-blue-100 text-blue-800;
+}
+
+/* Estilos para hover states */
+.dark .faq-item:hover {
+  @apply bg-gray-700;
+}
+
+.light .faq-item:hover {
+  @apply bg-gray-50;
+}
+
+/* Estilos para o botão de limpar filtros */
+.dark .clear-filters {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.light .clear-filters {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+/* Estilos para o CTA section */
+.dark .cta-section {
+  @apply bg-gradient-to-r from-blue-700 to-purple-700 text-white;
+}
+
+.light .cta-section {
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white;
+}
+
+.dark .cta-button {
+  @apply bg-white text-blue-700 hover:bg-gray-100;
+}
+
+.light .cta-button {
+  @apply bg-white text-blue-600 hover:bg-gray-100;
+}
+
+/* Estilos para texto do CTA */
+.dark .cta-text {
+  @apply text-blue-200;
+}
+
+.light .cta-text {
+  @apply text-blue-100;
+}
+
+/* Estilos para loading state */
+.dark .loading-text {
+  @apply text-gray-300;
+}
+
+.light .loading-text {
+  @apply text-gray-600;
+}
+
+/* Estilos para resultados count */
+.dark .results-count {
+  @apply text-gray-300;
+}
+
+.light .results-count {
+  @apply text-gray-600;
+}
+
+/* Estilos para ícones de categoria */
+.dark .category-icon {
+  @apply text-gray-300;
+}
+
+.light .category-icon {
+  @apply text-gray-600;
+}
+
+/* Estilos para o botão de categoria ativa */
+.dark .category-active {
+  @apply bg-blue-600 text-white;
+}
+
+.light .category-active {
+  @apply bg-blue-600 text-white;
+}
+
+.dark .category-inactive {
+  @apply bg-gray-700 text-gray-300 hover:bg-gray-600;
+}
+
+.light .category-inactive {
+  @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+}
+
+/* Estilos para o componente Integrantes */
+.integrantes-light {
+  @apply bg-gray-50;
+}
+
+.integrantes-dark {
+  @apply bg-gray-900;
+}
+
+.team-description-light {
+  @apply bg-white text-gray-900;
+}
+
+.team-description-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.modal-light {
+  @apply bg-white text-gray-900;
+}
+
+.modal-dark {
+  @apply bg-gray-800 text-white;
+}
+
+/* Estilos para cards de integrante */
+.integrante-card-light {
+  @apply bg-blue-50 hover:bg-blue-100 text-gray-900;
+}
+
+.integrante-card-dark {
+  @apply bg-gray-800 hover:bg-gray-700 text-white;
+}
+
+/* Estilos para o avatar do integrante */
+.avatar-light {
+  @apply bg-blue-600 text-white;
+}
+
+.avatar-dark {
+  @apply bg-blue-700 text-white;
+}
+
+/* Estilos para links sociais */
+.social-link-github-light {
+  @apply text-gray-600 hover:text-gray-900;
+}
+
+.social-link-github-dark {
+  @apply text-gray-400 hover:text-white;
+}
+
+.social-link-linkedin-light {
+  @apply text-blue-600 hover:text-blue-800;
+}
+
+.social-link-linkedin-dark {
+  @apply text-blue-400 hover:text-blue-300;
+}
+
+/* Estilos para botões do modal */
+.modal-button-github-light {
+  @apply bg-gray-800 text-white hover:bg-gray-900;
+}
+
+.modal-button-github-dark {
+  @apply bg-gray-700 text-white hover:bg-gray-600;
+}
+
+.modal-button-linkedin-light {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.modal-button-linkedin-dark {
+  @apply bg-blue-700 text-white hover:bg-blue-600;
+}
+
+/* Estilos para ícones informativos */
+.info-icon-light {
+  @apply text-blue-600;
+}
+
+.info-icon-dark {
+  @apply text-blue-400;
+}
+
+/* Estilos para texto informativo */
+.info-text-light {
+  @apply text-gray-600;
+}
+
+.info-text-dark {
+  @apply text-gray-300;
+}
+
+/* Estilos para animações */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Estilos para o botão de fechar modal */
+.close-button-light {
+  @apply text-gray-500 hover:text-gray-700;
+}
+
+.close-button-dark {
+  @apply text-gray-400 hover:text-white;
+}
+
+/* Estilos para loading state */
+.loading-spinner-light {
+  @apply text-blue-600;
+}
+
+.loading-spinner-dark {
+  @apply text-blue-400;
+}
+
+.loading-text-light {
+  @apply text-gray-600;
+}
+
+.loading-text-dark {
+  @apply text-gray-300;
+}
+
+/* Estilos para ícones de missão e tecnologias */
+.mission-icon-light {
+  @apply text-green-600;
+}
+
+.mission-icon-dark {
+  @apply text-green-400;
+}
+
+.tech-icon-light {
+  @apply text-purple-600;
+}
+
+.tech-icon-dark {
+  @apply text-purple-400;
+}
+
+/* Estilos para o componente Sobre */
+.sobre-light {
+  @apply bg-gray-50;
+}
+
+.sobre-dark {
+  @apply bg-gray-900;
+}
+
+.hero-light {
+  @apply bg-white;
+}
+
+.hero-dark {
+  @apply bg-gray-800;
+}
+
+.metrics-light {
+  @apply bg-blue-400;
+}
+
+.metrics-dark {
+  @apply bg-blue-600;
+}
+
+.tab-content-light {
+  @apply bg-white text-gray-900;
+}
+
+.tab-content-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.history-light {
+  @apply bg-white text-gray-900;
+}
+
+.history-dark {
+  @apply bg-gray-800 text-white;
+}
+
+.modal-light {
+  @apply bg-white text-gray-900;
+}
+
+.modal-dark {
+  @apply bg-gray-800 text-white;
+}
+
+/* Estilos para texto das métricas */
+.metrics-text-light {
+  @apply text-blue-100;
+}
+
+.metrics-text-dark {
+  @apply text-blue-200;
+}
+
+/* Estilos para botões de tab */
+.tab-button-active {
+  @apply bg-blue-600 text-white;
+}
+
+.tab-button-inactive-light {
+  @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+}
+
+.tab-button-inactive-dark {
+  @apply bg-gray-700 text-gray-300 hover:bg-gray-600;
+}
+
+/* Estilos para botões de redes sociais no modal */
+.modal-button-github-light {
+  @apply bg-gray-800 text-white hover:bg-gray-900;
+}
+
+.modal-button-github-dark {
+  @apply bg-gray-700 text-white hover:bg-gray-600;
+}
+
+.modal-button-linkedin-light {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.modal-button-linkedin-dark {
+  @apply bg-blue-700 text-white hover:bg-blue-600;
+}
+
+/* Estilos para o avatar no modal */
+.avatar-light {
+  @apply bg-blue-600 text-white;
+}
+
+.avatar-dark {
+  @apply bg-blue-700 text-white;
+}
+
+/* Estilos para o botão de fechar modal */
+.close-button-light {
+  @apply text-gray-500 hover:text-gray-700;
+}
+
+.close-button-dark {
+  @apply text-gray-400 hover:text-white;
+}
+
+/* Estilos para animações */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Estilos para texto do conteúdo */
+.content-text-light {
+  @apply text-gray-600;
+}
+
+.content-text-dark {
+  @apply text-gray-300;
+}
+
+/* Estilos para títulos */
+.title-light {
+  @apply text-gray-900;
+}
+
+.title-dark {
+  @apply text-white;
+}
+
+.subtitle-light {
+  @apply text-gray-600;
+}
+
+.subtitle-dark {
+  @apply text-gray-300;
+}
+
+/* Estilos para hover effects nas métricas */
+.metric-item {
+  @apply transform hover:scale-110 transition duration-300;
+}
+
+/* Estilos para sombras e bordas */
+.shadow-section-light {
+  @apply shadow-lg;
+}
+
+.shadow-section-dark {
+  @apply shadow-lg shadow-gray-900;
+}
