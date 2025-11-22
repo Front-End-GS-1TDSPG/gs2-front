@@ -210,13 +210,15 @@ Página destinada ao registro diário do estado emocional do usuário.
 
 ---
 
-## 10. Autores e créditos
+## 👥 10. Autores e Créditos
 
-| 🖼️ Foto | 👤 Nome | 🆔 RM | 🏫 Turma | 🌐 GitHub | 💼 LinkedIn |
-|---------|---------|-------|----------|-----------|-------------|
-| ![andre-imagem](https://github.com/user-attachments/assets/968bd425-b21c-4b28-983d-31afe963daa6) | **André Emygdio Ferreira** | 565592 | 1TDSPG | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Asuyz) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andr%C3%A9-emygdio-ferreira-46bb32219/) |
-| ![Gabriel](https://github.com/user-attachments/assets/6ac1e548-5bf9-4736-80ba-8956a095fa2d) | **Gabriel Lourenço Müller** | 561995 | 1TDSPO | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/glMuller) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gabriel-m%C3%BCller-595020354/) |
-| ![joao-imagem](https://github.com/user-attachments/assets/81fee167-23c6-4141-aedc-95bafe6c8d86) | **João Victor Nascimento Adão** | 563409 | 1TDSPG | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yJoaoVictor10) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jo%C3%A3o-victor-nascimento-ad%C3%A3o-494728283/) |
+👨‍💻 Desenvolvedores
+
+André Emygdio Ferreira 
+
+Gabriel Lourenço Müller 
+
+João Victor Nascimento Adão
 
 
 ---
@@ -235,8 +237,11 @@ Página destinada ao registro diário do estado emocional do usuário.
 
 Caso tenha dúvidas, sugestões ou queira contribuir com o projeto, entre em contato:
 
-**João Victor**  
-- E-mail: jvna07@gmail.com
+| 🖼️ Foto | 👤 Nome | 🆔 RM | 🏫 Turma | 🌐 GitHub | 💼 LinkedIn |
+|---------|---------|-------|----------|-----------|-------------|
+| ![andre-imagem](https://github.com/user-attachments/assets/968bd425-b21c-4b28-983d-31afe963daa6) | **André Emygdio Ferreira** | 565592 | 1TDSPG | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Asuyz) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andr%C3%A9-emygdio-ferreira-46bb32219/) |
+| ![Gabriel](https://github.com/user-attachments/assets/6ac1e548-5bf9-4736-80ba-8956a095fa2d) | **Gabriel Lourenço Müller** | 561995 | 1TDSPO | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/glMuller) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gabriel-m%C3%BCller-595020354/) |
+| ![joao-imagem](https://github.com/user-attachments/assets/81fee167-23c6-4141-aedc-95bafe6c8d86) | **João Victor Nascimento Adão** | 563409 | 1TDSPG | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yJoaoVictor10) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jo%C3%A3o-victor-nascimento-ad%C3%A3o-494728283/) |
 
 ---
 ## b. Links
