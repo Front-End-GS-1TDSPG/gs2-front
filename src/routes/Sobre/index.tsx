@@ -37,7 +37,6 @@ export default function Sobre() {
 
   return (
     <div className={`min-h-screen ${isDark ? 'sobre-dark' : 'sobre-light'}`}>
-      {/* Hero Section */}
       <section className={`py-16 ${isDark ? 'hero-dark' : 'hero-light'}`}>
         <div className="container mx-auto px-4">
           <div className="text-center">
@@ -52,7 +51,6 @@ export default function Sobre() {
         </div>
       </section>
 
-      {/* Métricas */}
       <section className={`py-12 text-white ${isDark ? 'metrics-dark' : 'metrics-light'}`}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -70,7 +68,6 @@ export default function Sobre() {
         </div>
       </section>
 
-      {/* Missão, Visão e Valores */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -104,7 +101,6 @@ export default function Sobre() {
         </div>
       </section>
 
-      {/* Modal de Detalhes do Integrante */}
       {selectedMember && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className={`rounded-xl max-w-md w-full p-6 transform scale-95 animate-scaleIn ${
@@ -177,7 +173,6 @@ export default function Sobre() {
         </div>
       )}
 
-      {/* História */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">

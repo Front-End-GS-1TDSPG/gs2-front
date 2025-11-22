@@ -74,7 +74,6 @@ export default function RegistroHumor() {
       const errorMessage = err instanceof Error ? err.message : 'Tente novamente';
       setError('Erro ao carregar lista de colaboradores: ' + errorMessage);
       
-      // Auto-retry após 5 segundos (máximo 3 tentativas)
       if (retryCount < 3) {
         setTimeout(() => {
           setRetryCount(prev => prev + 1);
@@ -151,12 +150,10 @@ export default function RegistroHumor() {
     setError('');
   };
 
-  // Skeleton Loading para empregados
   if (loadingEmpregados) {
     return (
       <div className={`min-h-screen py-8 ${isDark ? 'registro-humor-dark' : 'registro-humor-light'}`}>
         <div className="container mx-auto px-4 max-w-2xl">
-          {/* Header Skeleton */}
           <div className="text-center mb-8">
             <div className={`h-12 rounded-lg w-96 mx-auto mb-4 animate-pulse ${
               isDark ? 'bg-gray-700' : 'bg-gray-300'
@@ -166,7 +163,6 @@ export default function RegistroHumor() {
             }`}></div>
           </div>
 
-          {/* Form Skeleton */}
           <div className={`rounded-xl shadow-lg p-6 ${
             isDark ? 'bg-gray-800' : 'bg-white'
           }`}>
@@ -192,7 +188,6 @@ export default function RegistroHumor() {
   return (
     <div className={`min-h-screen py-8 ${isDark ? 'registro-humor-dark' : 'registro-humor-light'}`}>
       <div className="container mx-auto px-4 max-w-2xl">
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className={`text-4xl font-bold mb-4 ${
             isDark ? 'text-white' : 'text-gray-900'
@@ -213,7 +208,6 @@ export default function RegistroHumor() {
           </p>
         </div>
 
-        {/* Formulário */}
         <div className={`rounded-xl shadow-lg p-6 ${
           isDark ? 'form-container-dark' : 'form-container-light'
         }`}>
@@ -271,7 +265,6 @@ export default function RegistroHumor() {
           )}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {/* Empregado */}
             <div>
               <label className={`text-sm font-medium mb-2 flex items-center ${
                 isDark ? 'text-gray-200' : 'text-gray-700'
@@ -310,7 +303,6 @@ export default function RegistroHumor() {
               )}
             </div>
 
-            {/* Data */}
             <div>
               <label className={`text-sm font-medium mb-2 flex items-center ${
                 isDark ? 'text-gray-200' : 'text-gray-700'
@@ -332,7 +324,6 @@ export default function RegistroHumor() {
               )}
             </div>
 
-            {/* Nível de Humor */}
             <div className={`rounded-lg p-4 border ${
               isDark ? 'bg-blue-900 border-blue-700' : 'bg-blue-50 border-blue-200'
             }`}>
@@ -385,7 +376,6 @@ export default function RegistroHumor() {
               )}
             </div>
 
-            {/* Nível de Estresse */}
             <div className={`rounded-lg p-4 border ${
               isDark ? 'bg-orange-900 border-orange-700' : 'bg-orange-50 border-orange-200'
             }`}>
@@ -438,7 +428,6 @@ export default function RegistroHumor() {
               )}
             </div>
 
-            {/* Observações */}
             <div className={`rounded-lg p-4 border ${
               isDark ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
             }`}>
@@ -484,7 +473,6 @@ export default function RegistroHumor() {
               </div>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading || empregados.length === 0}
@@ -511,7 +499,6 @@ export default function RegistroHumor() {
           </form>
         </div>
 
-        {/* Informações */}
         <div className={`mt-8 rounded-xl p-6 border ${
           isDark ? 'bg-blue-900 border-blue-700' : 'bg-blue-50 border-blue-200'
         }`}>
@@ -557,7 +544,6 @@ export default function RegistroHumor() {
           </ul>
         </div>
 
-        {/* Botão de recarregar colaboradores */}
         {error && (
           <div className="mt-6 text-center">
             <button

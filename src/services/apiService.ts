@@ -1,15 +1,13 @@
 import type { AlertaBemEstar, Departamento, Empregado, RegistroHumor, RegistroHumorForm } from "../types/tipoApi";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL as string;;
-const TIMEOUT = 10000; // 10 segundos
+const TIMEOUT = 10000; 
 
-// Interface para o cache
 interface CacheItem {
   data: unknown;
   timestamp: number;
 }
 
-// Função auxiliar para fetch com timeout
 async function fetchWithTimeout(url: string, options: RequestInit = {}): Promise<Response> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
@@ -27,9 +25,8 @@ async function fetchWithTimeout(url: string, options: RequestInit = {}): Promise
   }
 }
 
-// Cache simples em memória
 const cache = new Map<string, CacheItem>();
-const CACHE_DURATION = 30000; // 30 segundos
+const CACHE_DURATION = 30000; 
 
 function getFromCache<T>(key: string): T | null {
   const cached = cache.get(key);
@@ -47,7 +44,6 @@ function setToCache<T>(key: string, data: T): void {
   });
 }
 
-// Tipo para erro com propriedade name
 interface ErrorWithName extends Error {
   name: string;
 }
@@ -57,7 +53,6 @@ function isAbortError(error: unknown): error is ErrorWithName {
 }
 
 export const apiService = {
-  // RegistroHumor
   async getRegistrosHumor(): Promise<RegistroHumor[]> {
     const cacheKey = 'registros-humor';
     const cached = getFromCache<RegistroHumor[]>(cacheKey);
@@ -78,7 +73,6 @@ export const apiService = {
   },
 
   async createRegistroHumor(registro: RegistroHumorForm): Promise<RegistroHumor> {
-    // Invalidar cache após criação
     cache.delete('registros-humor');
     
     const response = await fetchWithTimeout(`${API_BASE_URL}/humor`, {
@@ -93,7 +87,6 @@ export const apiService = {
   },
 
   async updateRegistroHumor(id: number, registro: RegistroHumorForm): Promise<RegistroHumor> {
-    // Invalidar cache após atualização
     cache.delete('registros-humor');
     
     const response = await fetchWithTimeout(`${API_BASE_URL}/humor/${id}`, {
@@ -108,7 +101,6 @@ export const apiService = {
   },
 
   async deleteRegistroHumor(id: number): Promise<boolean> {
-    // Invalidar cache após deleção
     cache.delete('registros-humor');
     
     const response = await fetchWithTimeout(`${API_BASE_URL}/humor/${id}`, {
@@ -118,7 +110,6 @@ export const apiService = {
     return response.status === 204;
   },
 
-  // Empregados
   async getEmpregados(): Promise<Empregado[]> {
     const cacheKey = 'empregados';
     const cached = getFromCache<Empregado[]>(cacheKey);
@@ -138,7 +129,6 @@ export const apiService = {
     }
   },
 
-  // Departamentos
   async getDepartamentos(): Promise<Departamento[]> {
     const cacheKey = 'departamentos';
     const cached = getFromCache<Departamento[]>(cacheKey);
@@ -158,7 +148,6 @@ export const apiService = {
     }
   },
 
-  // Alertas
   async getAlertas(): Promise<AlertaBemEstar[]> {
     const cacheKey = 'alertas';
     const cached = getFromCache<AlertaBemEstar[]>(cacheKey);

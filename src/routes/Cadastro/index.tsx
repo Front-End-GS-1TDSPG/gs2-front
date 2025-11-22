@@ -21,7 +21,6 @@ import type { TipoCadastro } from '../../types/tipoCadastro';
 import type { TipoUserData } from '../../types/tipoUserData';
 import { useTheme } from '../../contexts/useTheme';
 
-// Componente Modal de Mensagem (mesmo do Login)
 interface MessageModalProps {
   isOpen: boolean;
   title: string;
@@ -144,7 +143,6 @@ export default function Cadastro() {
     termos: false
   });
 
-  // Atualizar formData quando os campos mudarem
   const handleInputChange = (field: keyof typeof formData, value: string | boolean) => {
     setFormData(prev => ({
       ...prev,
@@ -156,7 +154,6 @@ export default function Cadastro() {
     setFocus('nome');
   }, [setFocus]);
 
-  // Estados para os modals
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState({ 
     title: '', 
@@ -171,7 +168,6 @@ export default function Cadastro() {
 
   const onSubmit = async (data: TipoCadastro) => {
     try {
-      // Verificar se email já está cadastrado
       const savedUserData = localStorage.getItem('userData');
       if (savedUserData) {
         const existingUser: TipoUserData = JSON.parse(savedUserData);
@@ -186,10 +182,8 @@ export default function Cadastro() {
         }
       }
 
-      // Simula processamento do cadastro
       await new Promise(resolve => setTimeout(resolve, 1500));
 
-      // Salvar dados do usuário no localStorage
       const userData: TipoUserData = {
         nome: data.nome,
         email: data.email,
@@ -199,14 +193,12 @@ export default function Cadastro() {
 
       localStorage.setItem('userData', JSON.stringify(userData));
       
-      // Mostrar modal de sucesso
       showMessage(
         "Cadastro Realizado!", 
         "Seu cadastro foi realizado com sucesso! Redirecionando para a página de login...", 
         'success'
       );
       
-      // Redirecionar para login após fechar o modal
       setTimeout(() => {
         navigate('/login', { 
           state: { 
@@ -225,7 +217,6 @@ export default function Cadastro() {
     }
   };
 
-  // Função de validação personalizada para confirmarSenha
   const validateConfirmPassword = (value: string) => {
     const senha = getValues('senha');
     return value === senha || 'As senhas não coincidem';
@@ -235,7 +226,6 @@ export default function Cadastro() {
     <div className={`min-h-screen py-8 ${isDark ? 'cadastro-dark' : 'cadastro-light'}`}>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="logo-icon">
@@ -252,7 +242,6 @@ export default function Cadastro() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Left Side - Benefits */}
             <div className={`rounded-2xl shadow-xl p-6 ${isDark ? 'benefits-dark' : 'benefits-light'}`}>
               <h3 className={`text-xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>Vantagens da MentalTech</h3>
               
@@ -290,7 +279,6 @@ export default function Cadastro() {
                 </div>
               </div>
 
-              {/* Stats */}
               <div className="mt-8 grid grid-cols-2 gap-4">
                 <div className={`text-center p-4 rounded-lg ${isDark ? 'stat-dark' : 'stat-light-blue'}`}>
                   <FaBuilding className={`text-xl mx-auto mb-2 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
@@ -305,10 +293,8 @@ export default function Cadastro() {
               </div>
             </div>
 
-            {/* Right Side - Registration Form */}
             <div className={`rounded-2xl shadow-xl p-6 ${isDark ? 'form-dark' : 'form-light'}`}>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                {/* Nome */}
                 <div>
                   <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                     Nome Completo *
@@ -335,7 +321,6 @@ export default function Cadastro() {
                   )}
                 </div>
 
-                {/* Email */}
                 <div>
                   <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                     Email *
@@ -362,7 +347,6 @@ export default function Cadastro() {
                   )}
                 </div>
 
-                 {/* Empresa e Cargo */}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
@@ -396,7 +380,6 @@ export default function Cadastro() {
                   </div>
                 </div>
 
-                {/* Senha */}
                 <div>
                   <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                     Senha *
@@ -435,7 +418,6 @@ export default function Cadastro() {
                   )}
                 </div>
 
-                {/* Confirmar Senha */}
                 <div>
                   <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                     Confirmar Senha *
@@ -470,7 +452,6 @@ export default function Cadastro() {
                   )}
                 </div>
 
-                {/* Termos */}
                 <div className="flex items-start space-x-2">
                   <input
                     type="checkbox"
@@ -500,7 +481,6 @@ export default function Cadastro() {
                   </p>
                 )}
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting || !formData.termos}
@@ -523,7 +503,6 @@ export default function Cadastro() {
                   )}
                 </button>
 
-                {/* Login Link */}
                 <div className="text-center">
                   <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                     Já tem uma conta?{' '}
@@ -545,7 +524,6 @@ export default function Cadastro() {
         </div>
       </div>
 
-      {/* Modal de Mensagem */}
       <MessageModal
         isOpen={showModal}
         title={modalMessage.title}

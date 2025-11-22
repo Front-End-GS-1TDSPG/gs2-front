@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 
-/* Estilos para os temas */
 .light-mode {
   @apply bg-white text-gray-900;
 }
@@ -10,7 +9,6 @@
   @apply bg-gray-900 text-white;
 }
 
-/* Estilos do Cabeçalho */
 .header-base {
   @apply sticky top-0 z-50 transition-all duration-300;
 }
@@ -136,12 +134,10 @@
   max-height: 0;
 }
 
-/* Garantir que a lista seja scrollável */
 .mobile-menu-list {
   @apply space-y-2 max-h-[70vh] overflow-y-auto;
 }
 
-/* Personalizar a scrollbar para melhor aparência */
 .mobile-menu-list::-webkit-scrollbar {
   width: 4px;
 }
@@ -266,7 +262,6 @@
   @apply bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white;
 }
 
-/* Estilos do Rodapé */
 .footer-base {
   @apply py-8;
 }
@@ -327,7 +322,6 @@
   @apply border-gray-800 text-gray-300;
 }
 
-/* Estilos para o componente Cadastro */
 .cadastro-light {
   @apply bg-gradient-to-br from-blue-50 to-indigo-100;
 }
@@ -372,7 +366,6 @@
   @apply bg-gray-700 text-gray-300;
 }
 
-/* Estilos para inputs no dark mode */
 .dark input::placeholder {
   @apply text-gray-400;
 }
@@ -385,7 +378,6 @@
   @apply bg-gray-700 text-white;
 }
 
-/* Estilos para o componente Login */
 .login-light {
   @apply bg-gradient-to-br from-blue-50 to-indigo-100;
 }
@@ -418,7 +410,6 @@
   @apply bg-gray-700 text-white;
 }
 
-/* Estilos para inputs no dark mode */
 .dark input::placeholder {
   @apply text-gray-400;
 }
@@ -427,7 +418,6 @@
   @apply ring-2 ring-blue-500;
 }
 
-/* Estilos para o checkbox no dark mode */
 .dark input[type="checkbox"] {
   @apply bg-gray-700 border-gray-600;
 }
@@ -436,7 +426,6 @@
   @apply bg-blue-500 border-blue-500;
 }
 
-/* Estilos para links no dark mode */
 .dark a {
   @apply text-blue-400;
 }
@@ -445,7 +434,6 @@
   @apply text-blue-300;
 }
 
-/* Estilos para o componente Contato */
 .contato-light {
   @apply bg-gray-50;
 }
@@ -478,7 +466,6 @@
   @apply bg-blue-900 text-white;
 }
 
-/* Estilos para inputs no dark mode */
 .dark input::placeholder {
   @apply text-gray-400;
 }
@@ -495,19 +482,16 @@
   @apply bg-gray-700 text-white;
 }
 
-/* Estilos para focus states no dark mode */
 .dark input:focus,
 .dark textarea:focus,
 .dark select:focus {
   @apply ring-2 ring-blue-500;
 }
 
-/* Estilos para ícones de redes sociais no dark mode */
 .dark .social-icon {
   @apply bg-gray-700 text-white hover:bg-gray-600;
 }
 
-/* Estilos para bordas e hover states */
 .dark .contact-method {
   @apply border-gray-700 hover:border-blue-500 bg-gray-800;
 }
@@ -516,7 +500,6 @@
   @apply border-gray-200 hover:border-blue-500 bg-white;
 }
 
-/* Estilos para o contador de caracteres */
 .dark .char-count {
   @apply text-gray-400;
 }
@@ -525,7 +508,6 @@
   @apply text-gray-500;
 }
 
-/* Estilos para mensagens de status */
 .dark .success-message {
   @apply bg-green-900 border-green-700 text-green-100;
 }
@@ -542,7 +524,6 @@
   @apply bg-red-50 border-red-200 text-red-800;
 }
 
-/* Estilos para o componente FAQ */
 .faq-light {
   @apply bg-gray-50;
 }
@@ -567,7 +548,6 @@
   @apply bg-gray-800;
 }
 
-/* Estilos para inputs no dark mode */
 .dark input::placeholder {
   @apply text-gray-400;
 }
@@ -576,7 +556,6 @@
   @apply ring-2 ring-blue-500;
 }
 
-/* Estilos para animações */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -592,7 +571,6 @@
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Estilos para ícones e textos */
 .dark .faq-category-badge {
   @apply bg-blue-900 text-blue-200;
 }
@@ -601,7 +579,6 @@
   @apply bg-blue-100 text-blue-800;
 }
 
-/* Estilos para hover states */
 .dark .faq-item:hover {
   @apply bg-gray-700;
 }
@@ -610,7 +587,6 @@
   @apply bg-gray-50;
 }
 
-/* Estilos para o botão de limpar filtros */
 .dark .clear-filters {
   @apply bg-blue-600 text-white hover:bg-blue-700;
 }
@@ -619,7 +595,6 @@
   @apply bg-blue-600 text-white hover:bg-blue-700;
 }
 
-/* Estilos para o CTA section */
 .dark .cta-section {
   @apply bg-gradient-to-r from-blue-700 to-purple-700 text-white;
 }
@@ -636,7 +611,6 @@
   @apply bg-white text-blue-600 hover:bg-gray-100;
 }
 
-/* Estilos para texto do CTA */
 .dark .cta-text {
   @apply text-blue-200;
 }
@@ -645,7 +619,6 @@
   @apply text-blue-100;
 }
 
-/* Estilos para loading state */
 .dark .loading-text {
   @apply text-gray-300;
 }
@@ -654,7 +627,6 @@
   @apply text-gray-600;
 }
 
-/* Estilos para resultados count */
 .dark .results-count {
   @apply text-gray-300;
 }
@@ -663,7 +635,6 @@
   @apply text-gray-600;
 }
 
-/* Estilos para ícones de categoria */
 .dark .category-icon {
   @apply text-gray-300;
 }
@@ -672,7 +643,6 @@
   @apply text-gray-600;
 }
 
-/* Estilos para o botão de categoria ativa */
 .dark .category-active {
   @apply bg-blue-600 text-white;
 }
@@ -689,7 +659,6 @@
   @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
 }
 
-/* Estilos para o componente Integrantes */
 .integrantes-light {
   @apply bg-gray-50;
 }
@@ -714,7 +683,6 @@
   @apply bg-gray-800 text-white;
 }
 
-/* Estilos para cards de integrante */
 .integrante-card-light {
   @apply bg-blue-50 hover:bg-blue-100 text-gray-900;
 }
@@ -723,7 +691,6 @@
   @apply bg-gray-800 hover:bg-gray-700 text-white;
 }
 
-/* Estilos para o avatar do integrante */
 .avatar-light {
   @apply bg-blue-600 text-white;
 }
@@ -732,7 +699,6 @@
   @apply bg-blue-700 text-white;
 }
 
-/* Estilos para links sociais */
 .social-link-github-light {
   @apply text-gray-600 hover:text-gray-900;
 }
@@ -749,7 +715,6 @@
   @apply text-blue-400 hover:text-blue-300;
 }
 
-/* Estilos para botões do modal */
 .modal-button-github-light {
   @apply bg-gray-800 text-white hover:bg-gray-900;
 }
@@ -766,7 +731,6 @@
   @apply bg-blue-700 text-white hover:bg-blue-600;
 }
 
-/* Estilos para ícones informativos */
 .info-icon-light {
   @apply text-blue-600;
 }
@@ -775,7 +739,6 @@
   @apply text-blue-400;
 }
 
-/* Estilos para texto informativo */
 .info-text-light {
   @apply text-gray-600;
 }
@@ -784,7 +747,6 @@
   @apply text-gray-300;
 }
 
-/* Estilos para animações */
 @keyframes scaleIn {
   from {
     opacity: 0;
@@ -800,7 +762,6 @@
   animation: scaleIn 0.2s ease-out;
 }
 
-/* Estilos para o botão de fechar modal */
 .close-button-light {
   @apply text-gray-500 hover:text-gray-700;
 }
@@ -809,7 +770,6 @@
   @apply text-gray-400 hover:text-white;
 }
 
-/* Estilos para loading state */
 .loading-spinner-light {
   @apply text-blue-600;
 }
@@ -826,7 +786,6 @@
   @apply text-gray-300;
 }
 
-/* Estilos para ícones de missão e tecnologias */
 .mission-icon-light {
   @apply text-green-600;
 }
@@ -843,7 +802,6 @@
   @apply text-purple-400;
 }
 
-/* Estilos para o componente Sobre */
 .sobre-light {
   @apply bg-gray-50;
 }
@@ -892,7 +850,6 @@
   @apply bg-gray-800 text-white;
 }
 
-/* Estilos para texto das métricas */
 .metrics-text-light {
   @apply text-blue-100;
 }
@@ -901,7 +858,6 @@
   @apply text-blue-200;
 }
 
-/* Estilos para botões de tab */
 .tab-button-active {
   @apply bg-blue-600 text-white;
 }
@@ -914,7 +870,6 @@
   @apply bg-gray-700 text-gray-300 hover:bg-gray-600;
 }
 
-/* Estilos para botões de redes sociais no modal */
 .modal-button-github-light {
   @apply bg-gray-800 text-white hover:bg-gray-900;
 }
@@ -931,7 +886,6 @@
   @apply bg-blue-700 text-white hover:bg-blue-600;
 }
 
-/* Estilos para o avatar no modal */
 .avatar-light {
   @apply bg-blue-600 text-white;
 }
@@ -940,7 +894,6 @@
   @apply bg-blue-700 text-white;
 }
 
-/* Estilos para o botão de fechar modal */
 .close-button-light {
   @apply text-gray-500 hover:text-gray-700;
 }
@@ -949,7 +902,6 @@
   @apply text-gray-400 hover:text-white;
 }
 
-/* Estilos para animações */
 @keyframes scaleIn {
   from {
     opacity: 0;
@@ -965,7 +917,6 @@
   animation: scaleIn 0.2s ease-out;
 }
 
-/* Estilos para texto do conteúdo */
 .content-text-light {
   @apply text-gray-600;
 }
@@ -974,7 +925,6 @@
   @apply text-gray-300;
 }
 
-/* Estilos para títulos */
 .title-light {
   @apply text-gray-900;
 }
@@ -991,12 +941,10 @@
   @apply text-gray-300;
 }
 
-/* Estilos para hover effects nas métricas */
 .metric-item {
   @apply transform hover:scale-110 transition duration-300;
 }
 
-/* Estilos para sombras e bordas */
 .shadow-section-light {
   @apply shadow-lg;
 }
@@ -1005,7 +953,6 @@
   @apply shadow-lg shadow-gray-900;
 }
 
-/* Estilos para o componente Home */
 .home-light {
   @apply bg-gradient-to-br from-blue-50 to-indigo-100;
 }
@@ -1046,7 +993,6 @@
   @apply bg-gray-800 text-white;
 }
 
-/* Estilos para botões primários */
 .primary-button-light {
   @apply bg-blue-600 hover:bg-blue-700 text-white;
 }
@@ -1055,7 +1001,6 @@
   @apply bg-blue-600 hover:bg-blue-700 text-white;
 }
 
-/* Estilos para botões secundários */
 .secondary-button-light {
   @apply border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white;
 }
@@ -1064,7 +1009,6 @@
   @apply border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900;
 }
 
-/* Estilos para botões CTA */
 .cta-button-light {
   @apply bg-white text-blue-600 hover:bg-gray-100;
 }
@@ -1073,7 +1017,6 @@
   @apply bg-white text-blue-700 hover:bg-gray-100;
 }
 
-/* Estilos para ícones de features */
 .feature-icon-green-light {
   @apply bg-green-100 text-green-600;
 }
@@ -1098,7 +1041,6 @@
   @apply bg-blue-900 text-blue-400;
 }
 
-/* Estilos para estatísticas */
 .stat-value-light {
   @apply text-blue-600;
 }
@@ -1115,7 +1057,6 @@
   @apply text-gray-300;
 }
 
-/* Estilos para ícones de estatísticas */
 .stat-icon-heart-light {
   @apply text-red-500;
 }
@@ -1148,7 +1089,6 @@
   @apply text-blue-400;
 }
 
-/* Estilos para texto do CTA */
 .cta-text-light {
   @apply text-blue-100;
 }
@@ -1157,7 +1097,6 @@
   @apply text-blue-200;
 }
 
-/* Estilos para benefícios */
 .benefit-icon-light {
   @apply text-blue-600;
 }
@@ -1182,7 +1121,6 @@
   @apply text-gray-300;
 }
 
-/* Estilos para animações */
 @keyframes scaleIn {
   from {
     transform: scale(0.95);
@@ -1198,7 +1136,6 @@
   animation: scaleIn 0.3s ease-out;
 }
 
-/* Estilos para hover effects */
 .hover-scale {
   @apply transform hover:scale-110 transition duration-300;
 }
@@ -1207,7 +1144,6 @@
   @apply hover:shadow-xl transition duration-300;
 }
 
-/* Estilos para gradientes de fundo */
 .bg-hero-light {
   @apply bg-gradient-to-br from-blue-50 to-indigo-100;
 }
@@ -1216,7 +1152,6 @@
   @apply bg-gradient-to-br from-gray-900 to-gray-800;
 }
 
-/* Estilos para o componente GerenciarHumor */
 .gerenciar-humor-light {
   @apply bg-gray-50;
 }
@@ -1241,7 +1176,6 @@
   @apply bg-gray-800 text-white;
 }
 
-/* Estilos para inputs e selects no dark mode */
 .dark input[type="date"]::-webkit-calendar-picker-indicator {
   @apply invert brightness-200;
 }
@@ -1262,7 +1196,6 @@
   @apply text-gray-400;
 }
 
-/* Estilos para range inputs no dark mode */
 .dark input[type="range"]::-webkit-slider-track {
   @apply bg-gray-600 rounded-lg;
 }
@@ -1279,7 +1212,6 @@
   @apply bg-blue-500 border-blue-400;
 }
 
-/* Estilos para cards de registro */
 .registro-card-light {
   @apply bg-white border-gray-200 hover:border-gray-300;
 }
@@ -1288,7 +1220,6 @@
   @apply bg-gray-800 border-gray-700 hover:border-gray-600;
 }
 
-/* Estilos para botões de ação */
 .action-button-edit-light {
   @apply text-blue-600 hover:text-blue-800 hover:bg-blue-50;
 }
@@ -1305,7 +1236,6 @@
   @apply text-red-400 hover:text-red-300 hover:bg-red-900;
 }
 
-/* Estilos para filtros */
 .filter-select-light {
   @apply border-gray-300;
 }
@@ -1322,7 +1252,6 @@
   @apply bg-gray-700 border-gray-600 text-white;
 }
 
-/* Estilos para mensagens de status */
 .success-message-light {
   @apply bg-green-50 border-green-200 text-green-800;
 }
@@ -1339,7 +1268,6 @@
   @apply bg-red-900 border-red-700 text-red-100;
 }
 
-/* Estilos para seções coloridas */
 .humor-section-light {
   @apply bg-blue-50 border-blue-200;
 }
@@ -1364,7 +1292,6 @@
   @apply bg-gray-700 border-gray-600;
 }
 
-/* Estilos para animações */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -1380,7 +1307,6 @@
   animation: fade-in 0.3s ease-out;
 }
 
-/* Estilos para o botão de voltar ao topo */
 .scroll-top-light {
   @apply bg-blue-600 text-white hover:bg-blue-700;
 }
@@ -1389,7 +1315,6 @@
   @apply bg-blue-600 text-white hover:bg-blue-700;
 }
 
-/* Estilos para o botão de recarregar */
 .reload-button-light {
   @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
 }
@@ -1398,7 +1323,6 @@
   @apply bg-gray-700 text-gray-300 hover:bg-gray-600;
 }
 
-/* Estilos para estados vazios */
 .empty-state-light {
   @apply bg-white text-gray-900;
 }
@@ -1415,7 +1339,6 @@
   @apply text-gray-500;
 }
 
-/* Estilos para o componente RegistroHumor */
 .registro-humor-light {
   @apply bg-gray-50;
 }
@@ -1432,7 +1355,6 @@
   @apply bg-gray-800;
 }
 
-/* Estilos para inputs e selects no dark mode */
 .dark input[type="date"]::-webkit-calendar-picker-indicator {
   @apply invert brightness-200;
 }
@@ -1453,7 +1375,6 @@
   @apply text-gray-400;
 }
 
-/* Estilos para range inputs no dark mode */
 .dark input[type="range"]::-webkit-slider-track {
   @apply bg-gray-600 rounded-lg;
 }
@@ -1470,7 +1391,6 @@
   @apply bg-blue-500 border-blue-400;
 }
 
-/* Estilos para seções coloridas */
 .humor-section-light {
   @apply bg-blue-50 border-blue-200;
 }
@@ -1503,7 +1423,6 @@
   @apply bg-blue-900 border-blue-700 text-blue-200;
 }
 
-/* Estilos para mensagens de status */
 .success-message-light {
   @apply bg-green-50 border-green-200 text-green-800;
 }
@@ -1528,7 +1447,6 @@
   @apply text-yellow-400;
 }
 
-/* Estilos para botões */
 .primary-button-light {
   @apply bg-blue-600 hover:bg-blue-700 text-white;
 }
@@ -1553,7 +1471,6 @@
   @apply bg-red-700 text-white hover:bg-red-600;
 }
 
-/* Estilos para texto informativo */
 .info-text-light {
   @apply text-gray-500;
 }
@@ -1562,7 +1479,6 @@
   @apply text-gray-400;
 }
 
-/* Estilos para labels */
 .label-light {
   @apply text-gray-700;
 }
@@ -1571,7 +1487,6 @@
   @apply text-gray-200;
 }
 
-/* Estilos para animações */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -1587,7 +1502,6 @@
   animation: fade-in 0.3s ease-out;
 }
 
-/* Estilos para ícones de informação */
 .info-icon-light {
   @apply text-blue-600;
 }
@@ -1596,7 +1510,6 @@
   @apply text-blue-400;
 }
 
-/* Estilos para o contador de observações */
 .observacao-count-low-light {
   @apply text-red-600 bg-red-50;
 }
@@ -1621,7 +1534,6 @@
   @apply text-green-400 bg-green-900;
 }
 
-/* Estilos para o botão de submit desabilitado */
 .submit-disabled-light {
   @apply bg-gray-400 cursor-not-allowed;
 }
@@ -1630,7 +1542,6 @@
   @apply bg-gray-500 cursor-not-allowed;
 }
 
-/* Estilos para o select desabilitado */
 .select-disabled-light {
   @apply bg-gray-100;
 }
@@ -1639,7 +1550,6 @@
   @apply bg-gray-800;
 }
 
-/* Estilos para o componente Dashboard */
 .dashboard-light {
   @apply bg-gray-50;
 }
@@ -1664,7 +1574,6 @@
   @apply bg-gray-800 text-white;
 }
 
-/* Estilos para alertas */
 .alerta-critico-light {
   @apply bg-red-100 text-red-800 border-red-200;
 }
@@ -1697,7 +1606,6 @@
   @apply bg-blue-900 text-blue-200 border-blue-700;
 }
 
-/* Estilos para cards de departamento */
 .departamento-card-light {
   @apply border-gray-200;
 }
@@ -1706,7 +1614,6 @@
   @apply border-gray-700 hover:bg-gray-800;
 }
 
-/* Estilos para registros de humor */
 .registro-humor-light {
   @apply border-gray-200 hover:bg-gray-50;
 }
@@ -1715,7 +1622,6 @@
   @apply border-gray-700 hover:bg-gray-800;
 }
 
-/* Estilos para botões */
 .reload-button-light {
   @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
 }
@@ -1732,7 +1638,6 @@
   @apply bg-blue-600 text-white hover:bg-blue-700;
 }
 
-/* Estilos para ícones de estatísticas */
 .stat-icon-blue-light {
   @apply text-blue-600;
 }
@@ -1765,7 +1670,6 @@
   @apply text-purple-400;
 }
 
-/* Estilos para cores de humor */
 .humor-excelente-light {
   @apply text-green-600;
 }
@@ -1790,7 +1694,6 @@
   @apply text-red-400;
 }
 
-/* Estilos para cores de estresse */
 .estresse-baixo-light {
   @apply text-green-600;
 }
@@ -1815,7 +1718,6 @@
   @apply text-red-400;
 }
 
-/* Estilos para estados vazios */
 .empty-state-light {
   @apply text-gray-500;
 }
@@ -1832,7 +1734,6 @@
   @apply text-gray-500;
 }
 
-/* Estilos para indicador de carregamento */
 .loading-indicator-light {
   @apply text-orange-600 bg-orange-100;
 }
@@ -1841,7 +1742,6 @@
   @apply text-orange-400 bg-orange-900;
 }
 
-/* Estilos para animações */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -1857,7 +1757,6 @@
   animation: fade-in 0.3s ease-out;
 }
 
-/* Estilos para hover effects */
 .hover-scale-light {
   @apply hover:shadow-xl transition duration-300;
 }
@@ -1882,7 +1781,6 @@
   @apply hover:shadow-md hover:shadow-gray-900 transition duration-200;
 }
 
-/* Responsividade para telas até 1400px */
 @media (max-width: 1400px) {
   .header-nav {
     @apply hidden;
@@ -1893,7 +1791,6 @@
   }
 }
 
-/* Ajustes específicos para o menu desktop em telas grandes */
 @media (min-width: 1401px) {
   .header-nav {
     @apply flex;
@@ -1904,7 +1801,6 @@
   }
 }
 
-/* Ajustes para telas médias */
 @media (max-width: 1024px) {
   .container {
     @apply px-4;
@@ -1915,7 +1811,6 @@
   }
 }
 
-/* Ajustes para telas pequenas */
 @media (max-width: 768px) {
   .logo-title {
     @apply text-lg;
@@ -1926,7 +1821,6 @@
   }
 }
 
-/* Garantir que o menu mobile funcione corretamente */
 @media (max-width: 1400px) {
   .lg\:hidden {
     @apply block;

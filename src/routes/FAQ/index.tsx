@@ -26,15 +26,12 @@ export default function FAQ() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [filteredItems, setFilteredItems] = useState<FAQItem[]>([]);
 
-  // Categorias disponíveis
   const categories: FAQCategory[] = listaCategorias;
 
-  // Função para navegar para a rota de cadastro
   const handleEntrarEmContato = () => {
     navigate('/contato');
   };
 
-  // Renderiza ícone baseado no nome
   const renderIcon = (iconName: string, size: string = 'text-base') => {
     const iconProps = { className: size };
     
@@ -66,11 +63,9 @@ export default function FAQ() {
     }
   };
 
-  // Carrega dados do FAQ
   useEffect(() => {
     const loadFAQData = async () => {
       try {
-        // Simula delay de API
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         setFaqItems(listaFaq);
@@ -86,16 +81,13 @@ export default function FAQ() {
     loadFAQData();
   }, []); 
 
-  // Filtra itens baseado na busca e categoria
   useEffect(() => {
     let filtered = faqItems;
 
-    // Filtro por categoria
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(item => item.category === selectedCategory);
     }
 
-    // Filtro por busca
     if (searchTerm.trim() !== '') {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(item =>
@@ -130,7 +122,6 @@ export default function FAQ() {
   return (
     <div className={`min-h-screen py-8 ${isDark ? 'faq-dark' : 'faq-light'}`}>
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             Perguntas Frequentes
@@ -140,10 +131,8 @@ export default function FAQ() {
           </p>
         </div>
 
-        {/* Search and Filters */}
         <div className="max-w-4xl mx-auto mb-8">
           <div className={`rounded-xl shadow-lg p-6 ${isDark ? 'search-filters-dark' : 'search-filters-light'}`}>
-            {/* Search Bar */}
             <div className="relative mb-6">
               <input
                 type="text"
@@ -163,7 +152,6 @@ export default function FAQ() {
               </div>
             </div>
 
-            {/* Category Filters */}
             <div className="flex flex-wrap gap-2 justify-center">
               {categories.map(category => (
                 <button
@@ -185,7 +173,6 @@ export default function FAQ() {
           </div>
         </div>
 
-        {/* Loading State */}
         {loading ? (
           <div className="flex justify-center items-center py-12">
             {renderIcon('FaSpinner', `animate-spin h-12 w-12 ${isDark ? 'text-blue-400' : 'text-blue-600'}`)}
@@ -193,7 +180,6 @@ export default function FAQ() {
           </div>
         ) : (
           <>
-            {/* Results Count */}
             <div className="text-center mb-6">
               <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
                 {filteredItems.length === faqItems.length 
@@ -204,7 +190,6 @@ export default function FAQ() {
               </p>
             </div>
 
-            {/* FAQ Items */}
             <div className="max-w-4xl mx-auto space-y-4 mb-12">
               {filteredItems.map(item => (
                 <div
@@ -262,7 +247,6 @@ export default function FAQ() {
               ))}
             </div>
 
-            {/* No Results */}
             {filteredItems.length === 0 && (
               <div className="text-center py-12">
                 {renderIcon('FaQuestion', `text-6xl mx-auto mb-4 ${isDark ? 'text-gray-500' : 'text-gray-400'}`)}
@@ -293,7 +277,6 @@ export default function FAQ() {
           </>
         )}
         
-        {/* Contact CTA */}
         <div className="max-w-4xl mx-auto">
           <div className={`rounded-xl shadow-lg p-8 text-center ${
             isDark 

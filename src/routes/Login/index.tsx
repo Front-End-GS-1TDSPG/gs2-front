@@ -19,7 +19,6 @@ import type { TipoLogin } from '../../types/tipoLogin';
 import type { TipoUserData } from '../../types/tipoUserData';
 import { useTheme } from '../../contexts/useTheme';
 
-// Componente Modal de Mensagem
 interface MessageModalProps {
   isOpen: boolean;
   title: string;
@@ -131,7 +130,6 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   
-  // Estados para os modals
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState({ 
     title: '', 
@@ -139,7 +137,6 @@ export default function Login() {
     type: 'info' as 'success' | 'error' | 'warning' | 'info' 
   });
 
-  // Verificar se veio do cadastro com sucesso
   useEffect(() => {
     if (location.state?.cadastroSucesso) {
       setModalMessage({
@@ -149,7 +146,6 @@ export default function Login() {
       });
       setShowModal(true);
       
-      // Preencher automaticamente o email
       if (location.state.email) {
         setValue('email', location.state.email);
       }
@@ -165,27 +161,22 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      // Simula autenticação
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Verificar se os dados correspondem aos do cadastro
       const savedUserData = localStorage.getItem('userData');
       
       if (savedUserData) {
         const userData: TipoUserData = JSON.parse(savedUserData);
         
         if (data.email === userData.email) {
-          // Marcar usuário como logado
           localStorage.setItem('isLoggedIn', 'true');
           
-          // Mostrar modal de sucesso
           showMessage(
             "Login Realizado!", 
             `Bem-vindo de volta, ${userData.nome.split(' ')[0]}! Redirecionando para a página inicial...`, 
             'success'
           );
           
-          // Recarregar a página para atualizar o cabeçalho após fechar o modal
           setTimeout(() => {
             window.location.href = '/';
           }, 2000);
@@ -193,9 +184,7 @@ export default function Login() {
         }
       }
 
-      // Fallback para dados de demonstração
       if (data.email === 'demo@mentaltech.com' && data.senha === '123456') {
-        // Criar dados mock para usuário de demonstração
         const mockUserData: TipoUserData = {
           nome: 'Usuário Demonstração',
           email: data.email,
@@ -205,14 +194,12 @@ export default function Login() {
         localStorage.setItem('userData', JSON.stringify(mockUserData));
         localStorage.setItem('isLoggedIn', 'true');
         
-        // Mostrar modal de sucesso
         showMessage(
           "Login Realizado!", 
           "Login realizado com sucesso! Redirecionando para a página inicial...", 
           'success'
         );
         
-        // Recarregar a página para atualizar o cabeçalho após fechar o modal
         setTimeout(() => {
           window.location.href = '/';
         }, 2000);
@@ -254,7 +241,6 @@ export default function Login() {
     <div className={`min-h-screen flex items-center justify-center py-8 ${isDark ? 'login-dark' : 'login-light'}`}>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
-          {/* Left Side - Branding */}
           <div className="text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start space-x-3 mb-8">
               <div className="logo-icon">
@@ -270,7 +256,6 @@ export default function Login() {
               Acesse sua conta para continuar monitorando o bem-estar da sua equipe.
             </p>
 
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-4 max-w-md">
               <div className="text-center">
                 <FaUser className={`text-xl mx-auto mb-2 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
@@ -290,7 +275,6 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Right Side - Login Form */}
           <div className={`rounded-2xl shadow-xl p-8 max-w-md mx-auto w-full ${isDark ? 'form-dark' : 'form-light'}`}>
             <div className="text-center mb-8">
               <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Fazer Login</h3>
@@ -298,7 +282,6 @@ export default function Login() {
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Email */}
               <div>
                 <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                   Email *
@@ -325,7 +308,6 @@ export default function Login() {
                 )}
               </div>
 
-              {/* Password */}
               <div>
                 <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                   Senha *
@@ -363,7 +345,6 @@ export default function Login() {
                 )}
               </div>
 
-              {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
                 <label className="flex items-center">
                   <input
@@ -385,7 +366,6 @@ export default function Login() {
                 </a>
               </div>
 
-              {/* Login Error */}
               {errors.root && (
                 <div className={`rounded-lg p-4 ${
                   isDark ? 'bg-red-900 border border-red-700' : 'bg-red-50 border border-red-200'
@@ -399,7 +379,6 @@ export default function Login() {
                 </div>
               )}
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isLoading}
@@ -422,7 +401,6 @@ export default function Login() {
                 )}
               </button>
 
-              {/* Divider */}
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <div className={`w-full border-t ${isDark ? 'border-gray-600' : 'border-gray-300'}`}></div>
@@ -432,7 +410,6 @@ export default function Login() {
                 </div>
               </div>
 
-              {/* Register Link */}
               <div className="text-center">
                 <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
                   Não tem uma conta?{' '}
@@ -450,7 +427,6 @@ export default function Login() {
               </div>
             </form>
 
-            {/* Demo Credentials */}
             <div className={`mt-8 p-4 rounded-lg ${isDark ? 'demo-credentials-dark' : 'demo-credentials-light'}`}>
               <h4 className={`text-sm font-semibold mb-2 flex items-center gap-2 ${
                 isDark ? 'text-white' : 'text-gray-900'
@@ -467,7 +443,6 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Modal de Mensagem */}
       <MessageModal
         isOpen={showModal}
         title={modalMessage.title}

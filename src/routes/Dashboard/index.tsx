@@ -46,7 +46,6 @@ export default function Dashboard() {
       setLoading(true);
       setError('');
 
-      // Carregar dados sequencialmente para evitar sobrecarga
       const humorData = await apiService.getRegistrosHumor();
       setRegistrosHumor(humorData);
 
@@ -64,7 +63,6 @@ export default function Dashboard() {
       const errorMessage = err instanceof Error ? err.message : 'Erro ao carregar dados do dashboard';
       setError(errorMessage);
       
-      // Auto-retry após 5 segundos (máximo 3 tentativas)
       if (retryCount < 3) {
         setTimeout(() => {
           setRetryCount(prev => prev + 1);
@@ -79,7 +77,6 @@ export default function Dashboard() {
     loadDashboardData();
   }, [loadDashboardData]);
 
-  // Calcular estatísticas
   const estatisticas = [
     {
       valor: registrosHumor.length,
@@ -143,12 +140,10 @@ export default function Dashboard() {
     return <IoSad className={isDark ? 'text-red-400' : 'text-red-600'} />;
   };
 
-  // Skeleton Loading
   if (loading) {
     return (
       <div className={`min-h-screen py-8 ${isDark ? 'dashboard-dark' : 'dashboard-light'}`}>
         <div className="container mx-auto px-4">
-          {/* Header Skeleton */}
           <div className="text-center mb-8">
             <div className={`h-12 rounded-lg w-64 mx-auto mb-4 animate-pulse ${
               isDark ? 'bg-gray-700' : 'bg-gray-300'
@@ -158,7 +153,6 @@ export default function Dashboard() {
             }`}></div>
           </div>
 
-          {/* Estatísticas Skeleton */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             {[...Array(4)].map((_, i) => (
               <div key={i} className={`rounded-xl shadow-lg p-6 ${
@@ -174,7 +168,6 @@ export default function Dashboard() {
             ))}
           </div>
 
-          {/* Conteúdo Skeleton */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {[...Array(2)].map((_, i) => (
               <div key={i} className={`rounded-xl shadow-lg p-6 ${
@@ -250,7 +243,6 @@ export default function Dashboard() {
   return (
     <div className={`min-h-screen py-8 ${isDark ? 'dashboard-dark' : 'dashboard-light'}`}>
       <div className="container mx-auto px-4">
-        {/* Header com indicador de carregamento */}
         <div className="text-center mb-8">
           <h1 className={`text-4xl md:text-5xl font-bold mb-4 flex items-center justify-center ${
             isDark ? 'text-white' : 'text-gray-900'
@@ -275,7 +267,6 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Estatísticas */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {estatisticas.map((stat, index) => (
             <div key={index} className={`rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition duration-300 ${
@@ -299,7 +290,6 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Últimos Registros de Humor */}
           <div className={`rounded-xl shadow-lg p-6 ${
             isDark ? 'section-dark' : 'section-light'
           }`}>
@@ -361,7 +351,6 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Alertas Recentes */}
           <div className={`rounded-xl shadow-lg p-6 ${
             isDark ? 'section-dark' : 'section-light'
           }`}>
@@ -410,7 +399,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Departamentos */}
         <div className={`mt-8 rounded-xl shadow-lg p-6 ${
           isDark ? 'section-dark' : 'section-light'
         }`}>
@@ -459,7 +447,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Botão de recarregar */}
         <div className="mt-8 text-center">
           <button
             onClick={loadDashboardData}

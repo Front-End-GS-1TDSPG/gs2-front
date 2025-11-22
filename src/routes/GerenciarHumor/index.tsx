@@ -74,7 +74,6 @@ export default function GerenciarHumor() {
       setLoading(true);
       setError('');
       
-      // Carregar sequencialmente para melhor performance
       const empregadosData = await apiService.getEmpregados();
       setEmpregados(empregadosData);
       
@@ -86,7 +85,6 @@ export default function GerenciarHumor() {
       const errorMessage = err instanceof Error ? err.message : 'Tente novamente';
       setError('Erro ao carregar dados: ' + errorMessage);
       
-      // Auto-retry após 5 segundos (máximo 3 tentativas)
       if (retryCount < 3) {
         setTimeout(() => {
           setRetryCount(prev => prev + 1);
@@ -228,12 +226,10 @@ export default function GerenciarHumor() {
     setError('');
   };
 
-  // Skeleton Loading
   if (loading) {
     return (
       <div className={`min-h-screen py-8 ${isDark ? 'gerenciar-humor-dark' : 'gerenciar-humor-light'}`}>
         <div className="container mx-auto px-4">
-          {/* Header Skeleton */}
           <div className="text-center mb-8">
             <div className={`h-12 rounded-lg w-96 mx-auto mb-4 animate-pulse ${
               isDark ? 'bg-gray-700' : 'bg-gray-300'
@@ -244,7 +240,6 @@ export default function GerenciarHumor() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Lista Skeleton */}
             <div>
               <div className={`h-8 rounded w-48 mb-6 animate-pulse ${
                 isDark ? 'bg-gray-700' : 'bg-gray-300'
@@ -287,7 +282,6 @@ export default function GerenciarHumor() {
               </div>
             </div>
 
-            {/* Form Skeleton */}
             <div>
               <div className={`rounded-xl shadow-lg p-6 sticky top-6 ${
                 isDark ? 'bg-gray-800' : 'bg-white'
@@ -319,7 +313,6 @@ export default function GerenciarHumor() {
   return (
     <div className={`min-h-screen py-8 ${isDark ? 'gerenciar-humor-dark' : 'gerenciar-humor-light'}`}>
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className={`text-4xl font-bold mb-4 ${
             isDark ? 'text-white' : 'text-gray-900'
@@ -389,7 +382,6 @@ export default function GerenciarHumor() {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Lista de Registros */}
           <div>
             <div className="flex justify-between items-center mb-6">
               <h2 className={`text-2xl font-bold ${
@@ -403,7 +395,6 @@ export default function GerenciarHumor() {
                 </span>
               </h2>
               
-              {/* Filtros */}
               <div className="flex space-x-2">
                 <select
                   value={filterEmpregado}
@@ -489,7 +480,6 @@ export default function GerenciarHumor() {
                     </div>
                   </div>
 
-                  {/* Níveis */}
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div className={`text-center p-3 rounded-lg border-2 ${getHumorColor(registro.nivel_humor)}`}>
                       <div className="flex justify-center mb-1">{getHumorIcon(registro.nivel_humor)}</div>
@@ -503,7 +493,6 @@ export default function GerenciarHumor() {
                     </div>
                   </div>
 
-                  {/* Observação */}
                   <div className={`border-t pt-4 ${
                     isDark ? 'border-gray-700' : 'border-gray-200'
                   }`}>
@@ -529,7 +518,6 @@ export default function GerenciarHumor() {
                     )}
                   </div>
 
-                  {/* Modal de Confirmação de Exclusão */}
                   {deleteConfirm === registro.id_registro && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
                       <div className={`rounded-xl p-6 max-w-md w-full ${
@@ -613,7 +601,6 @@ export default function GerenciarHumor() {
             </div>
           </div>
 
-          {/* Formulário */}
           <div id="form-section">
             <div className={`rounded-xl shadow-lg p-6 sticky top-6 ${
               isDark ? 'form-container-dark' : 'form-container-light'
@@ -635,7 +622,6 @@ export default function GerenciarHumor() {
               </h2>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Empregado */}
                 <div>
                   <label className={`text-sm font-medium mb-2 flex items-center ${
                     isDark ? 'text-gray-200' : 'text-gray-700'
@@ -663,7 +649,6 @@ export default function GerenciarHumor() {
                   )}
                 </div>
 
-                {/* Data */}
                 <div>
                   <label className={`text-sm font-medium mb-2 flex items-center ${
                     isDark ? 'text-gray-200' : 'text-gray-700'
@@ -685,7 +670,6 @@ export default function GerenciarHumor() {
                   )}
                 </div>
 
-                {/* Nível de Humor */}
                 <div className={`rounded-lg p-4 border ${
                   isDark ? 'bg-blue-900 border-blue-700' : 'bg-blue-50 border-blue-200'
                 }`}>
@@ -728,7 +712,6 @@ export default function GerenciarHumor() {
                   )}
                 </div>
 
-                {/* Nível de Estresse */}
                 <div className={`rounded-lg p-4 border ${
                   isDark ? 'bg-orange-900 border-orange-700' : 'bg-orange-50 border-orange-200'
                 }`}>
@@ -771,7 +754,6 @@ export default function GerenciarHumor() {
                   )}
                 </div>
               
-              {/* Observações */}
                 <div className={`rounded-lg p-4 border ${
                   isDark ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
                 }`}>
@@ -817,7 +799,6 @@ export default function GerenciarHumor() {
                   </div>
                 </div>
 
-                {/* Botões de Ação */}
                 <div className="flex space-x-3">
                   <button
                     type="submit"
@@ -869,7 +850,6 @@ export default function GerenciarHumor() {
           </div>
         </div>
 
-        {/* Botão de recarregar */}
         <div className="mt-8 text-center">
           <button
             onClick={loadData}
@@ -885,7 +865,6 @@ export default function GerenciarHumor() {
           </button>
         </div>
 
-        {/* Botão para voltar ao topo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className={`fixed bottom-6 right-6 p-3 rounded-full shadow-lg transition duration-300 ${

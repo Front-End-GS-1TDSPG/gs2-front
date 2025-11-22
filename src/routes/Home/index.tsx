@@ -57,10 +57,8 @@ export default function Home() {
     }
   ]);
 
-  // Simula carregamento de dados da API
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Atualiza estatísticas com animação
       const targetStats = [85, 42, 94, 67];
       setStats(prevStats => 
         prevStats.map((stat, index) => ({
@@ -69,7 +67,6 @@ export default function Home() {
         }))
       );
 
-      // Atualiza features
       setFeatures([
         {
           icon: <MdOutlineMonitorHeart size={24} />,
@@ -119,7 +116,6 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen ${isDark ? 'home-dark' : 'home-light'}`}>
-      {/* Hero Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center">
           <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -159,7 +155,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
@@ -193,7 +188,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className={`py-16 ${isDark ? 'stats-section-dark' : 'stats-section-light'}`}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -227,7 +221,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="container mx-auto px-4 py-16 text-center">
         <div className={`rounded-2xl p-8 md:p-12 text-white ${
           isDark 
@@ -260,7 +253,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Additional Info Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${

@@ -26,7 +26,6 @@ export default function Cabecalho() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { isDark, toggleTheme } = useTheme();
   
-  // Inicializar userData diretamente do localStorage
   const [userData, setUserData] = useState<TipoUserData | null>(() => {
     const savedUserData = localStorage.getItem("userData");
     const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -40,7 +39,6 @@ export default function Cabecalho() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Detecta scroll para adicionar sombra
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -77,7 +75,7 @@ export default function Cabecalho() {
       path: "/cadastro", 
       label: "Cadastro", 
       icon: <FaRocket className="text-base" />,
-      hide: !!userData // Esconder cadastro se usuário estiver logado
+      hide: !!userData 
     },
   ];
 
@@ -100,7 +98,6 @@ export default function Cabecalho() {
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <div 
             className="flex items-center space-x-3 cursor-pointer group"
             onClick={() => handleNavigation('/')}
@@ -115,7 +112,6 @@ export default function Cabecalho() {
             </div>
           </div>
 
-          {/* Saudação do usuário logado - Desktop */}
           {userData && (
             <div className="hidden lg:flex items-center space-x-4 mr-4">
               <div className="user-greeting">
@@ -125,7 +121,6 @@ export default function Cabecalho() {
             </div>
           )}
 
-          {/* Menu Desktop */}
           <nav className="hidden lg:flex items-center space-x-1">
             <ul className="flex items-center space-x-1">
               {menuItems.map((item) => (
@@ -155,7 +150,6 @@ export default function Cabecalho() {
               ))}
             </ul>
             
-            {/* Botão de alternância de tema - Desktop */}
             <button
               onClick={toggleTheme}
               className="theme-toggle-desktop"
@@ -169,7 +163,6 @@ export default function Cabecalho() {
             </button>
           </nav>
 
-          {/* Menu Mobile Toggle */}
           <button 
             className="mobile-menu-toggle"
             onClick={toggleMenu}
@@ -183,12 +176,10 @@ export default function Cabecalho() {
           </button>
         </div>
 
-        {/* Menu Mobile */}
         <div className={`lg:hidden transition-all duration-300 ${
           isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <nav className="mobile-menu-nav">
-            {/* Saudação do usuário logado - Mobile */}
             {userData && (
               <div className="mobile-user-greeting">
                 <FaUser className="mobile-user-icon" />
@@ -225,7 +216,6 @@ export default function Cabecalho() {
                 )
               ))}
               
-              {/* Botão de alternância de tema - Mobile */}
               <li>
                 <button
                   onClick={toggleTheme}

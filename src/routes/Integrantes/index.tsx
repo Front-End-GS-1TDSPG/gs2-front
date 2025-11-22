@@ -20,11 +20,9 @@ export default function Integrantes() {
   const [loading, setLoading] = useState(true);
   const [selectedIntegrante, setSelectedIntegrante] = useState<TipoIntegrantes | null>(null);
 
-  // Carrega dados dos integrantes
   useEffect(() => {
     const loadIntegrantes = async () => {
       try {
-        // Simula delay de API
         await new Promise(resolve => setTimeout(resolve, 800));
         setIntegrantes(listaIntegrantes);
       } catch (error) {
@@ -48,7 +46,6 @@ export default function Integrantes() {
     return (
     <div className={`min-h-screen py-8 ${isDark ? 'integrantes-dark' : 'integrantes-light'}`}>
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             Nossa Equipe
@@ -58,7 +55,6 @@ export default function Integrantes() {
           </p>
         </div>
 
-        {/* Loading State */}
         {loading ? (
           <div className="flex justify-center items-center py-12">
             <FaSpinner className={`animate-spin h-12 w-12 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
@@ -66,7 +62,6 @@ export default function Integrantes() {
           </div>
         ) : (
           <>
-            {/* Integrantes Grid - Igual ao Sobre */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
               {integrantes.map(integrante => (
                 <div 
@@ -142,7 +137,6 @@ export default function Integrantes() {
           </>
         )}
 
-        {/* Team Description */}
         <div className={`rounded-xl shadow-lg p-8 max-w-4xl mx-auto ${
           isDark ? 'team-description-dark' : 'team-description-light'
         }`}>
@@ -180,7 +174,6 @@ export default function Integrantes() {
         </div>
       </div>
 
-      {/* Modal de Detalhes do Integrante - Igual ao Sobre */}
       {selectedIntegrante && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className={`rounded-xl max-w-md w-full p-6 transform scale-95 animate-scaleIn ${

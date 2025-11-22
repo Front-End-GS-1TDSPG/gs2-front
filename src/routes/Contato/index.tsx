@@ -55,13 +55,10 @@ export default function Contato() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [charCount, setCharCount] = useState(0);
 
-  // Métodos de contato
   const [contactMethods, setContactMethods] = useState<ContactMethod[]>([]);
 
-  // Assuntos disponíveis
   const assuntos = listaAssuntos;
 
-  // Renderiza ícone baseado no nome
   const renderIcon = (iconName: string, color: string, size: string = 'text-2xl') => {
     const iconProps = { 
       className: `${size} ${isDark ? `text-${color}-400` : `text-${color}-600`}` 
@@ -99,7 +96,6 @@ export default function Contato() {
     }
   };
 
-  // Carrega métodos de contato
   useEffect(() => {
     const timer = setTimeout(() => {
       setContactMethods(listaContato);
@@ -108,7 +104,6 @@ export default function Contato() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Atualiza contador de caracteres
   useEffect(() => {
     setCharCount(formData.mensagem.length);
   }, [formData.mensagem]);
@@ -119,7 +114,6 @@ export default function Contato() {
       [field]: value
     }));
 
-    // Limpa erro do campo quando usuário começa a digitar
     if (errors[field]) {
       setErrors(prev => ({
         ...prev,
@@ -172,10 +166,8 @@ export default function Contato() {
     setSubmitStatus('idle');
 
     try {
-      // Simula envio para API
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Simula sucesso/erro aleatório para demonstração
       const isSuccess = Math.random() > 0.3;
       
       if (isSuccess) {
@@ -216,7 +208,6 @@ export default function Contato() {
   return (
     <div className={`min-h-screen py-8 ${isDark ? 'contato-dark' : 'contato-light'}`}>
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             Entre em Contato
@@ -227,7 +218,6 @@ export default function Contato() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {/* Informações de Contato */}
           <div className="lg:col-span-1">
             <div className={`rounded-xl shadow-lg p-6 sticky top-6 ${isDark ? 'contact-info-dark' : 'contact-info-light'}`}>
               <h2 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -257,7 +247,6 @@ export default function Contato() {
                 ))}
               </div>
 
-              {/* Horário de Atendimento */}
               <div className={`mt-8 p-4 rounded-lg ${
                 isDark ? 'hours-dark' : 'hours-light'
               }`}>
@@ -273,7 +262,6 @@ export default function Contato() {
                 </p>
               </div>
 
-              {/* Redes Sociais */}
               <div className="mt-6">
                 <h3 className={`font-semibold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                   Siga-nos
@@ -312,7 +300,6 @@ export default function Contato() {
             </div>
           </div>
 
-          {/* Formulário de Contato */}
           <div className="lg:col-span-2">
             <div className={`rounded-xl shadow-lg p-6 ${isDark ? 'contact-form-dark' : 'contact-form-light'}`}>
               <h2 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -320,7 +307,6 @@ export default function Contato() {
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Nome e Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
@@ -373,7 +359,6 @@ export default function Contato() {
                   </div>
                 </div>
 
-                {/* Telefone e Empresa */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
@@ -419,7 +404,6 @@ export default function Contato() {
                   </div>
                 </div>
 
-                {/* Assunto */}
                 <div>
                   <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                     Assunto *
@@ -450,7 +434,6 @@ export default function Contato() {
                   )}
                 </div>
 
-                {/* Mensagem */}
                 <div>
                   <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                     Mensagem *
@@ -484,7 +467,6 @@ export default function Contato() {
                   </div>
                 </div>
 
-                {/* Status do Envio */}
                 {submitStatus === 'success' && (
                   <div className={`rounded-lg p-4 ${
                     isDark 
@@ -515,7 +497,6 @@ export default function Contato() {
                   </div>
                 )}
 
-                {/* Botão de Envio */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
