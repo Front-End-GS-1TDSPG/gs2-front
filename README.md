@@ -29,7 +29,8 @@ A solução utiliza tecnologias modernas para acompanhar indicadores emocionais,
 10. Autores e Créditos  
 11. Screenshots/Demonstração  
 12. Contato
-b.  Links (YouTube e GitHub)
+
+b. Links (YouTube e GitHub)
 
 ---
 
